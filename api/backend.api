@@ -1,0 +1,51 @@
+syntax = "v1"
+
+info(
+	title: superTools-frontground-backend
+	desc: supertools前台后端代码
+	author: "super"
+	email: "supeng842499467@gmail.com"
+)
+
+type (
+	LoginReq {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}
+
+	LoginResp {
+		Id       int64  `json:"id"`
+		Username string `json:"username"`
+		Mobile   string `json:"mobile"`
+		JwtToken
+	}
+)
+
+type (
+	RegisterReq {
+		Username string `json:"username"`
+		Mobile   string `json:"mobile"`
+		Password string `json:"password"`
+	}
+
+	RegisterResp {
+		IsOK bool `json:"is_ok"`
+	}
+)
+
+type JwtToken {
+	AccessToken  string `json:"accessToken,omitempty"`
+	AccessExpire int64  `json:"accessExpire,omitempty"`
+	RefreshAfter int64  `json:"refreshAfter,omitempty"`
+}
+
+service backend-api {
+	@handler ping
+	post /user/ping ()
+	
+	@handler register
+	post /user/register (RegisterReq)returns (RegisterResp)
+	
+	@handler login
+	post /user/login (LoginReq) returns (LoginResp)
+}
