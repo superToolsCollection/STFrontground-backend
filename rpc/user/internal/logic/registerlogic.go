@@ -1,6 +1,8 @@
 package logic
 
 import (
+	"STFrontground-backend/rpc/pkg/errcode"
+	"STFrontground-backend/rpc/user/model"
 	"context"
 
 	"STFrontground-backend/rpc/user/internal/svc"
@@ -23,8 +25,26 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 	}
 }
 
-func (l *RegisterLogic) Register(in *user.RegisterReq) (*user.RegisterResp, error) {
-	// todo: add your logic here and delete this line
+func (l *RegisterLogic) Register(req *user.RegisterReq) (*user.RegisterResp, error) {
+	_, err := l.svcCtx.UserModel.FindOneByName(req.Username)
+	l.Info("uuuuu", err)
+	if err == nil{
+		return nil, errcode.ErrorDuplicateUsername
+	}
 
-	return &user.RegisterResp{}, nil
+	_, err = l.svcCtx.UserModel.FindOneByMobile(req.Mobile)
+	if err == nil{
+		return nil, errcode.ErrorDuplicateMobile
+	}
+	_, err = l.svcCtx.UserModel.Insert(model.Users{
+		Name:req.Username,
+		Password:req.Password,
+		Mobile:req.Mobile,
+	})
+	if err != nil{
+		return nil, errcode.ErrorUserRegisterFail
+	}
+	return &user.RegisterResp{
+		Isok:true,
+	}, nil
 }
