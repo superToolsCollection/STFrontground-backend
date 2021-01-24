@@ -32,10 +32,16 @@ func (l *LoginLogic) Login(req types.LoginReq) (*types.LoginResp, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	jwtLogic := NewJwtLogic(l.ctx, l.svcCtx)
+	r, err := jwtLogic.Jwt(types.JwtTokenRequest{})
+	if err != nil {
+		return nil, err
+	}
 	return &types.LoginResp{
 		Id:       resp.Id,
 		Username: resp.Username,
 		Mobile:   resp.Mobile,
-		Token:    resp.Token,
+		Token:    r.AccessToken,
 	}, nil
 }

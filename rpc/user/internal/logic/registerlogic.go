@@ -27,24 +27,23 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 
 func (l *RegisterLogic) Register(req *user.RegisterReq) (*user.RegisterResp, error) {
 	_, err := l.svcCtx.UserModel.FindOneByName(req.Username)
-	l.Info("uuuuu", err)
-	if err == nil{
+	if err == nil {
 		return nil, errcode.ErrorDuplicateUsername
 	}
 
 	_, err = l.svcCtx.UserModel.FindOneByMobile(req.Mobile)
-	if err == nil{
+	if err == nil {
 		return nil, errcode.ErrorDuplicateMobile
 	}
 	_, err = l.svcCtx.UserModel.Insert(model.Users{
-		Name:req.Username,
-		Password:req.Password,
-		Mobile:req.Mobile,
+		Name:     req.Username,
+		Password: req.Password,
+		Mobile:   req.Mobile,
 	})
-	if err != nil{
+	if err != nil {
 		return nil, errcode.ErrorUserRegisterFail
 	}
 	return &user.RegisterResp{
-		Isok:true,
+		Isok: true,
 	}, nil
 }
