@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package user;
+
+message LoginReq {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResp {
+  int64 id = 1;
+  string username = 2;
+  string mobile = 3;
+  string token = 4;
+}
+
+message RegisterReq {
+  string username = 1;
+  string mobile = 2;
+  string password = 3;
+}
+
+message RegisterResp {
+  bool isok =1;
+}
+
+service User {
+  rpc login(LoginReq) returns(LoginResp);
+  rpc register(RegisterReq) returns(RegisterResp);
+}

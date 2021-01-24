@@ -10,7 +10,7 @@ type LoginResp struct {
 	Id       int64  `json:"id"`
 	Username string `json:"username"`
 	Mobile   string `json:"mobile"`
-	JwtToken
+	Token    string `json:"token"`
 }
 
 type RegisterReq struct {
@@ -21,10 +21,4 @@ type RegisterReq struct {
 
 type RegisterResp struct {
 	IsOK bool `json:"is_ok"`
-}
-
-type JwtToken struct {
-	AccessToken  string `json:"accessToken,omitempty"`
-	AccessExpire int64  `json:"accessExpire,omitempty"`
-	RefreshAfter int64  `json:"refreshAfter,omitempty"`
 }

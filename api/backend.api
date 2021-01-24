@@ -17,7 +17,7 @@ type (
 		Id       int64  `json:"id"`
 		Username string `json:"username"`
 		Mobile   string `json:"mobile"`
-		JwtToken
+		Token    string `json:"token"`
 	}
 )
 
@@ -32,12 +32,6 @@ type (
 		IsOK bool `json:"is_ok"`
 	}
 )
-
-type JwtToken {
-	AccessToken  string `json:"accessToken,omitempty"`
-	AccessExpire int64  `json:"accessExpire,omitempty"`
-	RefreshAfter int64  `json:"refreshAfter,omitempty"`
-}
 
 service backend-api {
 	@handler ping

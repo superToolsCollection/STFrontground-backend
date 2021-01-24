@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"STFrontground-backend/rpc/user/user"
 	"context"
 
 	"STFrontground-backend/api/internal/svc"
@@ -24,7 +25,17 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) LoginLogic {
 }
 
 func (l *LoginLogic) Login(req types.LoginReq) (*types.LoginResp, error) {
-	// todo: add your logic here and delete this line
-
-	return &types.LoginResp{}, nil
+	resp, err := l.svcCtx.User.Login(l.ctx, &user.LoginReq{
+		Username: req.Username,
+		Password: req.Password,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &types.LoginResp{
+		Id:       resp.Id,
+		Username: resp.Username,
+		Mobile:   resp.Mobile,
+		Token:    resp.Token,
+	}, nil
 }
