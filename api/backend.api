@@ -50,9 +50,15 @@ service backend-api {
 	@handler ping
 	post /user/ping ()
 	
+	@doc(
+		summary: "用户注册"
+	)
 	@handler register
 	post /user/register (RegisterReq)returns (RegisterResp)
 	
+	@doc(
+		summary: "用户登陆"
+	)
 	@handler login
 	post /user/login (LoginReq) returns (LoginResp)
 }
@@ -92,15 +98,27 @@ type (
 	middleware: Usercheck
 )
 service backend-api{
+	@doc(
+		summary: "用户信息"
+	)
 	@handler userInfo
 	get /user/info () returns (UserReply)
 	
+	@doc(
+		summary: "生成morse码"
+	)
 	@handler morse
 	get /api/v1/morse (MorseReq) returns (MorseResp)
 	
+	@doc(
+		summary: "生成二维码"
+	)
 	@handler qrcode
 	get /api/v1/qrcode (QrCodeReq) returns (QrCodeResp)
 	
+	@doc(
+		summary: "rgb转hex"
+	)
 	@handler rgb2hex
 	get /api/v1/rgb2hex (Rgb2HexReq) returns (Rgb2HexResp)
 }
