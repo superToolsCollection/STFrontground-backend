@@ -26,10 +26,10 @@ func NewJwtLogic(ctx context.Context, svcCtx *svc.ServiceContext) JwtLogic {
 }
 
 func (l *JwtLogic) Jwt(req types.JwtTokenRequest) (*types.JwtTokenResponse, error) {
-	var accessExpire = l.svcCtx.Config.JwtAuth.AccessExpire
+	var accessExpire = l.svcCtx.Config.Auth.AccessExpire
 
 	now := time.Now().Unix()
-	accessToken, err := l.GenToken(now, l.svcCtx.Config.JwtAuth.AccessSecret, nil, accessExpire)
+	accessToken, err := l.GenToken(now, l.svcCtx.Config.Auth.AccessSecret, nil, accessExpire)
 	if err != nil {
 		return nil, err
 	}

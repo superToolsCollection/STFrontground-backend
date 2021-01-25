@@ -39,3 +39,11 @@ type GetUserRequest struct {
 type GetUserResponse struct {
 	Name string `json:"name"`
 }
+
+type MorseReq struct {
+	Str string `json:"str"`
+}
+
+type MorseResp struct {
+	MorseStr string `json:"morse_str"`
+}

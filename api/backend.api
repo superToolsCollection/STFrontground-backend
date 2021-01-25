@@ -65,3 +65,21 @@ service backend-api {
 	@handler login
 	post /user/login (LoginReq) returns (LoginResp)
 }
+
+type (
+	MorseReq {
+		Str string `json:"str"`
+	}
+
+	MorseResp {
+		MorseStr string `json:"morse_str"`
+	}
+)
+
+@server(
+	jwt: Auth
+)
+service backend-api{
+	@handler morse
+	get /api/v1/morse (MorseReq) returns (MorseResp)
+}

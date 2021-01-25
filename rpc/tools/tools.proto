@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package tools;
+
+message MorseReq {
+  string str = 1;
+}
+
+message MorseResp {
+  string morseStr = 1;
+}
+
+service Tools {
+  rpc Morse(MorseReq) returns(MorseResp);
+}

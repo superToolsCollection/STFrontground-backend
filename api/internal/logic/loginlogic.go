@@ -33,6 +33,7 @@ func (l *LoginLogic) Login(req types.LoginReq) (*types.LoginResp, error) {
 		return nil, err
 	}
 
+	//获取jwt-token
 	jwtLogic := NewJwtLogic(l.ctx, l.svcCtx)
 	r, err := jwtLogic.Jwt(types.JwtTokenRequest{})
 	if err != nil {
