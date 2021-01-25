@@ -1,0 +1,3 @@
+{"@timestamp":"2021-01-25T19:10:04.932+08","level":"info","content":"200 - /user/info - [::1]:62700 - PostmanRuntime/7.26.8 - 37.4ms","trace":"1205cacbc0caed2d","span":"0"}
+{"@timestamp":"2021-01-25T19:10:09.037+08","level":"info","content":"409 - /user/info - [::1]:62700 - PostmanRuntime/7.26.8 - 0.2ms","trace":"5bb1a74926e372a6","span":"0"}
+{"@timestamp":"2021-01-25T19:10:12.977+08","level":"info","content":"409 - /user/info - [::1]:62700 - PostmanRuntime/7.26.8 - 0.1ms","trace":"6caa045eb0367b6c","span":"0"}

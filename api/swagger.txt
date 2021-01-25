@@ -1,11 +1,1 @@
-version: '2.2'
-
-services:
-  swagger-ui:
-    image: swaggerapi/swagger-ui
-    ports:
-      - 8083:8083
-    environment:
-      SWAGGER_JSON: /foo/backend.json
-    volumes:
-      - /Users/super/develop/STFrontground-backend/api:/foo
+ docker run --rm -p 8083:8080 -e SWAGGER_JSON=backend.json -v $PWD:/foo swaggerapi/swagger-ui

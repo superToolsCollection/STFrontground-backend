@@ -1,1 +1,375 @@
-docker run --rm -p 8083:8080 -e SWAGGER_JSON=backend.json -v $PWD:/foo swaggerapi/swagger-ui
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/morse": {
+      "get": {
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/MorseResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "str",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "backend-api"
+        ]
+      }
+    },
+    "/api/v1/qrcode": {
+      "get": {
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/QrCodeResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "str",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "backend-api"
+        ]
+      }
+    },
+    "/api/v1/rgb2hex": {
+      "get": {
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/Rgb2HexResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "str",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "backend-api"
+        ]
+      }
+    },
+    "/user/info": {
+      "get": {
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UserReply"
+            }
+          }
+        },
+        "tags": [
+          "backend-api"
+        ]
+      }
+    },
+    "/user/login": {
+      "post": {
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/LoginResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginReq"
+            }
+          }
+        ],
+        "tags": [
+          "backend-api"
+        ]
+      }
+    },
+    "/user/ping": {
+      "post": {
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "tags": [
+          "backend-api"
+        ]
+      }
+    },
+    "/user/register": {
+      "post": {
+        "operationId": "",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RegisterResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RegisterReq"
+            }
+          }
+        ],
+        "tags": [
+          "backend-api"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "JwtToken": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "accessExpire": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "refreshAfter": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "JwtToken",
+      "required": [
+        "accessToken",
+        "accessExpire",
+        "refreshAfter"
+      ]
+    },
+    "LoginReq": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "LoginReq",
+      "required": [
+        "username",
+        "password"
+      ]
+    },
+    "LoginResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "title": "LoginResp",
+      "required": [
+        "id",
+        "username",
+        "mobile",
+        "token"
+      ]
+    },
+    "MorseReq": {
+      "type": "object",
+      "properties": {
+        "str": {
+          "type": "string"
+        }
+      },
+      "title": "MorseReq",
+      "required": [
+        "str"
+      ]
+    },
+    "MorseResp": {
+      "type": "object",
+      "properties": {
+        "morse_str": {
+          "type": "string"
+        }
+      },
+      "title": "MorseResp",
+      "required": [
+        "morse_str"
+      ]
+    },
+    "QrCodeReq": {
+      "type": "object",
+      "properties": {
+        "str": {
+          "type": "string"
+        }
+      },
+      "title": "QrCodeReq",
+      "required": [
+        "str"
+      ]
+    },
+    "QrCodeResp": {
+      "type": "object",
+      "properties": {
+        "qrcode_str": {
+          "type": "string"
+        }
+      },
+      "title": "QrCodeResp",
+      "required": [
+        "qrcode_str"
+      ]
+    },
+    "RegisterReq": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "RegisterReq",
+      "required": [
+        "username",
+        "mobile",
+        "password"
+      ]
+    },
+    "RegisterResp": {
+      "type": "object",
+      "properties": {
+        "is_ok": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "RegisterResp",
+      "required": [
+        "is_ok"
+      ]
+    },
+    "Rgb2HexReq": {
+      "type": "object",
+      "properties": {
+        "str": {
+          "type": "string"
+        }
+      },
+      "title": "Rgb2HexReq",
+      "required": [
+        "str"
+      ]
+    },
+    "Rgb2HexResp": {
+      "type": "object",
+      "properties": {
+        "rgb2hex_str": {
+          "type": "string"
+        }
+      },
+      "title": "Rgb2HexResp",
+      "required": [
+        "rgb2hex_str"
+      ]
+    },
+    "UserReply": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "": {
+          "$ref": "#/definitions/JwtToken"
+        }
+      },
+      "title": "UserReply",
+      "required": [
+        "id",
+        "username",
+        "mobile"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}

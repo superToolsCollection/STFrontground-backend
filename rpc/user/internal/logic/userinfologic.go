@@ -34,8 +34,8 @@ func (l *UserInfoLogic) UserInfo(req *user.UserInfoReq) (*user.UserInfoResp, err
 		return nil, err
 	}
 	return &user.UserInfoResp{
-		Id:userInfo.Id,
-		Username:userInfo.Name,
-		Mobile:userInfo.Mobile,
+		Id:       userInfo.Id,
+		Username: userInfo.Name,
+		Mobile:   userInfo.Mobile,
 	}, nil
 }

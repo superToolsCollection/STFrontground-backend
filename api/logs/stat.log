@@ -1,0 +1,5 @@
+{"@timestamp":"2021-01-25T19:10:04.932+08","level":"stat","content":"p2c - conn: 127.0.0.1:8080, load: 6084, reqs: 1"}
+{"@timestamp":"2021-01-25T19:45:55.473+08","level":"stat","content":"CPU: 0m, MEMORY: Alloc=1.9Mi, TotalAlloc=3.1Mi, Sys=68.9Mi, NumGC=1"}
+{"@timestamp":"2021-01-25T19:46:55.478+08","level":"stat","content":"CPU: 0m, MEMORY: Alloc=2.0Mi, TotalAlloc=3.2Mi, Sys=68.9Mi, NumGC=1"}
+{"@timestamp":"2021-01-25T19:47:55.477+08","level":"stat","content":"CPU: 0m, MEMORY: Alloc=1.8Mi, TotalAlloc=3.2Mi, Sys=68.9Mi, NumGC=2"}
+{"@timestamp":"2021-01-25T19:48:55.481+08","level":"stat","content":"CPU: 0m, MEMORY: Alloc=1.9Mi, TotalAlloc=3.2Mi, Sys=68.9Mi, NumGC=2"}
