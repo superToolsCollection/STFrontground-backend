@@ -1,13 +1,11 @@
 package main
 
 import (
-	"flag"
-	"fmt"
-
 	"STFrontground-backend/api/internal/config"
 	"STFrontground-backend/api/internal/handler"
 	"STFrontground-backend/api/internal/svc"
-
+	"flag"
+	"fmt"
 	"github.com/tal-tech/go-zero/core/conf"
 	"github.com/tal-tech/go-zero/rest"
 )

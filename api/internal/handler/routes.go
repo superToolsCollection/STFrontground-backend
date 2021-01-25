@@ -14,16 +14,6 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodPost,
-				Path:    "/user/token",
-				Handler: JwtHandler(serverCtx),
-			},
-		},
-	)
-
-	engine.AddRoutes(
-		[]rest.Route{
-			{
-				Method:  http.MethodPost,
 				Path:    "/user/ping",
 				Handler: pingHandler(serverCtx),
 			},
@@ -41,23 +31,31 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 	)
 
 	engine.AddRoutes(
-		[]rest.Route{
-			{
-				Method:  http.MethodGet,
-				Path:    "/api/v1/morse",
-				Handler: morseHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodGet,
-				Path:    "/api/v1/qrcode",
-				Handler: qrcodeHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodGet,
-				Path:    "/api/v1/rgb2hex",
-				Handler: rgb2hexHandler(serverCtx),
-			},
-		},
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Usercheck},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/user/info",
+					Handler: userInfoHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/api/v1/morse",
+					Handler: morseHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/api/v1/qrcode",
+					Handler: qrcodeHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/api/v1/rgb2hex",
+					Handler: rgb2hexHandler(serverCtx),
+				},
+			}...,
+		),
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 	)
 }

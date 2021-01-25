@@ -13,4 +13,6 @@ var (
 	ErrorUserListFail          = NewError(20060004, "获取用户列表失败")
 	ErrorDuplicateUsername     = NewError(20060005, "用户名已经注册")
 	ErrorDuplicateMobile       = NewError(20060006, "手机号已经被占用")
+	ErrorUserInfo              = NewError(20060007, "用户信息获取失败")
+	AuthDeny                   = NewError(20060008, "用户信息不一致")
 )

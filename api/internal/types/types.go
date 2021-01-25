@@ -23,21 +23,17 @@ type RegisterResp struct {
 	IsOK bool `json:"is_ok"`
 }
 
-type JwtTokenRequest struct {
+type UserReply struct {
+	Id       int64  `json:"id"`
+	Username string `json:"username"`
+	Mobile   string `json:"mobile"`
+	JwtToken
 }
 
-type JwtTokenResponse struct {
-	AccessToken  string `json:"access_token"`
-	AccessExpire int64  `json:"access_expire"`
-	RefreshAfter int64  `json:"refresh_after"` // 建议客户端刷新token的绝对时间
-}
-
-type GetUserRequest struct {
-	UserId string `json:"userId"`
-}
-
-type GetUserResponse struct {
-	Name string `json:"name"`
+type JwtToken struct {
+	AccessToken  string `json:"accessToken,omitempty"`
+	AccessExpire int64  `json:"accessExpire,omitempty"`
+	RefreshAfter int64  `json:"refreshAfter,omitempty"`
 }
 
 type MorseReq struct {

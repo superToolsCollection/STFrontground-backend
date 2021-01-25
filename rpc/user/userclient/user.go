@@ -14,14 +14,17 @@ import (
 )
 
 type (
+	UserInfoResp = user.UserInfoResp
 	LoginReq     = user.LoginReq
 	LoginResp    = user.LoginResp
 	RegisterReq  = user.RegisterReq
 	RegisterResp = user.RegisterResp
+	UserInfoReq  = user.UserInfoReq
 
 	User interface {
 		Login(ctx context.Context, in *LoginReq) (*LoginResp, error)
 		Register(ctx context.Context, in *RegisterReq) (*RegisterResp, error)
+		UserInfo(ctx context.Context, in *UserInfoReq) (*UserInfoResp, error)
 	}
 
 	defaultUser struct {
@@ -43,4 +46,9 @@ func (m *defaultUser) Login(ctx context.Context, in *LoginReq) (*LoginResp, erro
 func (m *defaultUser) Register(ctx context.Context, in *RegisterReq) (*RegisterResp, error) {
 	client := user.NewUserClient(m.cli.Conn())
 	return client.Register(ctx, in)
+}
+
+func (m *defaultUser) UserInfo(ctx context.Context, in *UserInfoReq) (*UserInfoResp, error) {
+	client := user.NewUserClient(m.cli.Conn())
+	return client.UserInfo(ctx, in)
 }

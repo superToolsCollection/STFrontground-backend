@@ -33,26 +33,17 @@ type (
 	}
 )
 
-type JwtTokenRequest {
+type UserReply {
+	Id       int64  `json:"id"`
+	Username string `json:"username"`
+	Mobile   string `json:"mobile"`
+	JwtToken
 }
 
-type JwtTokenResponse {
-	AccessToken  string `json:"access_token"`
-	AccessExpire int64  `json:"access_expire"`
-	RefreshAfter int64  `json:"refresh_after"` // 建议客户端刷新token的绝对时间
-}
-
-type GetUserRequest {
-	UserId string `json:"userId"`
-}
-
-type GetUserResponse {
-	Name string `json:"name"`
-}
-
-service backend-api {
-	@handler JwtHandler
-	post /user/token(JwtTokenRequest) returns (JwtTokenResponse)
+type JwtToken {
+	AccessToken  string `json:"accessToken,omitempty"`
+	AccessExpire int64  `json:"accessExpire,omitempty"`
+	RefreshAfter int64  `json:"refreshAfter,omitempty"`
 }
 
 service backend-api {
@@ -98,8 +89,12 @@ type (
 
 @server(
 	jwt: Auth
+	middleware: Usercheck
 )
 service backend-api{
+	@handler userInfo
+	get /user/info () returns (UserReply)
+	
 	@handler morse
 	get /api/v1/morse (MorseReq) returns (MorseResp)
 	
