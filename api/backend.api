@@ -76,10 +76,36 @@ type (
 	}
 )
 
+type (
+	QrCodeReq {
+		Str string `json:"str"`
+	}
+
+	QrCodeResp {
+		QrCodeStr string `json:"qrcode_str"`
+	}
+)
+
+type (
+	Rgb2HexReq {
+		Str string `json:"str"`
+	}
+
+	Rgb2HexResp {
+		Rgb2HexStr string `json:"rgb2hex_str"`
+	}
+)
+
 @server(
 	jwt: Auth
 )
 service backend-api{
 	@handler morse
 	get /api/v1/morse (MorseReq) returns (MorseResp)
+	
+	@handler qrcode
+	get /api/v1/qrcode (QrCodeReq) returns (QrCodeResp)
+	
+	@handler rgb2hex
+	get /api/v1/rgb2hex (Rgb2HexReq) returns (Rgb2HexResp)
 }

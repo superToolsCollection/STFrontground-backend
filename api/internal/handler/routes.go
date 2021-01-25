@@ -47,6 +47,16 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/api/v1/morse",
 				Handler: morseHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/api/v1/qrcode",
+				Handler: qrcodeHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/api/v1/rgb2hex",
+				Handler: rgb2hexHandler(serverCtx),
+			},
 		},
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 	)

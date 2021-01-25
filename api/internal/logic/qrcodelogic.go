@@ -10,29 +10,28 @@ import (
 	"github.com/tal-tech/go-zero/core/logx"
 )
 
-type MorseLogic struct {
+type QrcodeLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewMorseLogic(ctx context.Context, svcCtx *svc.ServiceContext) MorseLogic {
-	return MorseLogic{
+func NewQrcodeLogic(ctx context.Context, svcCtx *svc.ServiceContext) QrcodeLogic {
+	return QrcodeLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *MorseLogic) Morse(req types.MorseReq) (*types.MorseResp, error) {
-	resp, err := l.svcCtx.Tools.Morse(l.ctx, &tools.MorseReq{
+func (l *QrcodeLogic) Qrcode(req types.QrCodeReq) (*types.QrCodeResp, error) {
+	resp, err := l.svcCtx.Tools.QrCode(l.ctx, &tools.QrCodeReq{
 		Str: req.Str,
 	})
 	if err != nil {
 		return nil, err
 	}
-
-	return &types.MorseResp{
-		MorseStr: resp.MorseStr,
+	return &types.QrCodeResp{
+		QrCodeStr: resp.QrCodeStr,
 	}, nil
 }

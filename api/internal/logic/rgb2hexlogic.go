@@ -10,29 +10,28 @@ import (
 	"github.com/tal-tech/go-zero/core/logx"
 )
 
-type MorseLogic struct {
+type Rgb2hexLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewMorseLogic(ctx context.Context, svcCtx *svc.ServiceContext) MorseLogic {
-	return MorseLogic{
+func NewRgb2hexLogic(ctx context.Context, svcCtx *svc.ServiceContext) Rgb2hexLogic {
+	return Rgb2hexLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *MorseLogic) Morse(req types.MorseReq) (*types.MorseResp, error) {
-	resp, err := l.svcCtx.Tools.Morse(l.ctx, &tools.MorseReq{
+func (l *Rgb2hexLogic) Rgb2hex(req types.Rgb2HexReq) (*types.Rgb2HexResp, error) {
+	resp, err := l.svcCtx.Tools.Rgb2Hex(l.ctx, &tools.Rgb2HexReq{
 		Str: req.Str,
 	})
 	if err != nil {
 		return nil, err
 	}
-
-	return &types.MorseResp{
-		MorseStr: resp.MorseStr,
+	return &types.Rgb2HexResp{
+		Rgb2HexStr: resp.Rgb2HexStr,
 	}, nil
 }

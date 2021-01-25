@@ -14,11 +14,17 @@ import (
 )
 
 type (
-	MorseReq  = tools.MorseReq
-	MorseResp = tools.MorseResp
+	MorseReq    = tools.MorseReq
+	MorseResp   = tools.MorseResp
+	QrCodeReq   = tools.QrCodeReq
+	QrCodeResp  = tools.QrCodeResp
+	Rgb2HexReq  = tools.Rgb2HexReq
+	Rgb2HexResp = tools.Rgb2HexResp
 
 	Tools interface {
 		Morse(ctx context.Context, in *MorseReq) (*MorseResp, error)
+		QrCode(ctx context.Context, in *QrCodeReq) (*QrCodeResp, error)
+		Rgb2Hex(ctx context.Context, in *Rgb2HexReq) (*Rgb2HexResp, error)
 	}
 
 	defaultTools struct {
@@ -35,4 +41,14 @@ func NewTools(cli zrpc.Client) Tools {
 func (m *defaultTools) Morse(ctx context.Context, in *MorseReq) (*MorseResp, error) {
 	client := tools.NewToolsClient(m.cli.Conn())
 	return client.Morse(ctx, in)
+}
+
+func (m *defaultTools) QrCode(ctx context.Context, in *QrCodeReq) (*QrCodeResp, error) {
+	client := tools.NewToolsClient(m.cli.Conn())
+	return client.QrCode(ctx, in)
+}
+
+func (m *defaultTools) Rgb2Hex(ctx context.Context, in *Rgb2HexReq) (*Rgb2HexResp, error) {
+	client := tools.NewToolsClient(m.cli.Conn())
+	return client.Rgb2Hex(ctx, in)
 }

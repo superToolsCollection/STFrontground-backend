@@ -47,3 +47,19 @@ type MorseReq struct {
 type MorseResp struct {
 	MorseStr string `json:"morse_str"`
 }
+
+type QrCodeReq struct {
+	Str string `json:"str"`
+}
+
+type QrCodeResp struct {
+	QrCodeStr string `json:"qrcode_str"`
+}
+
+type Rgb2HexReq struct {
+	Str string `json:"str"`
+}
+
+type Rgb2HexResp struct {
+	Rgb2HexStr string `json:"rgb2hex_str"`
+}

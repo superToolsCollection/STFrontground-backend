@@ -10,6 +10,24 @@ message MorseResp {
   string morseStr = 1;
 }
 
+message QrCodeReq {
+  string str = 1;
+}
+
+message QrCodeResp {
+  string qrCodeStr = 1;
+}
+
+message Rgb2HexReq {
+  string str = 1;
+}
+
+message Rgb2HexResp {
+  string rgb2HexStr = 1;
+}
+
 service Tools {
   rpc Morse(MorseReq) returns(MorseResp);
+  rpc QrCode(QrCodeReq) returns(QrCodeResp);
+  rpc Rgb2Hex(Rgb2HexReq) returns(Rgb2HexResp);
 }

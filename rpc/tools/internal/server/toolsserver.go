@@ -25,3 +25,13 @@ func (s *ToolsServer) Morse(ctx context.Context, in *tools.MorseReq) (*tools.Mor
 	l := logic.NewMorseLogic(ctx, s.svcCtx)
 	return l.Morse(in)
 }
+
+func (s *ToolsServer) QrCode(ctx context.Context, in *tools.QrCodeReq) (*tools.QrCodeResp, error) {
+	l := logic.NewQrCodeLogic(ctx, s.svcCtx)
+	return l.QrCode(in)
+}
+
+func (s *ToolsServer) Rgb2Hex(ctx context.Context, in *tools.Rgb2HexReq) (*tools.Rgb2HexResp, error) {
+	l := logic.NewRgb2HexLogic(ctx, s.svcCtx)
+	return l.Rgb2Hex(in)
+}
