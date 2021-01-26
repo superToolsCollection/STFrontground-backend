@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"STFrontground-backend/rpc/pkg/errcode"
 	"STFrontground-backend/rpc/user/user"
 	"context"
 	"github.com/dgrijalva/jwt-go"
@@ -32,14 +33,14 @@ func (l *LoginLogic) Login(req types.LoginReq) (*types.LoginResp, error) {
 		Password: req.Password,
 	})
 	if err != nil {
-		return nil, err
+		return nil, errcode.ErrorUserIncorrectPassword
 	}
 	//获取jwt-token
 	now := time.Now().Unix()
 	accessExpire := l.svcCtx.Config.Auth.AccessExpire
 	jwtToken, err := l.getJwtToken(l.svcCtx.Config.Auth.AccessSecret, now, accessExpire, resp.Id)
 	if err != nil {
-		return nil, err
+		return nil, errcode.UnauthorizedTokenGenerate
 	}
 	return &types.LoginResp{
 		Id:       resp.Id,
