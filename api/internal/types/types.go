@@ -9,8 +9,7 @@ type LoginReq struct {
 type LoginResp struct {
 	Id       int64  `json:"id"`
 	Username string `json:"username"`
-	Mobile   string `json:"mobile"`
-	Token    string `json:"token"`
+	JwtToken
 }
 
 type RegisterReq struct {
@@ -20,14 +19,24 @@ type RegisterReq struct {
 }
 
 type RegisterResp struct {
-	IsOK bool `json:"is_ok"`
-}
-
-type UserReply struct {
 	Id       int64  `json:"id"`
 	Username string `json:"username"`
-	Mobile   string `json:"mobile"`
-	JwtToken
+}
+
+type GetVerificationCodeReq struct {
+	Mobile string `json:"mobile"`
+}
+
+type GetVerificationCodeResp struct {
+	ResultCode string `json:"result_code"`
+}
+
+type UserNameExistReq struct {
+	Username string `json:"username"`
+}
+
+type UserNameExistResp struct {
+	IsExist bool `json:"is_exist"`
 }
 
 type JwtToken struct {

@@ -10,31 +10,28 @@ import (
 	"github.com/tal-tech/go-zero/core/logx"
 )
 
-type RegisterLogic struct {
+type UserNameExistLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) RegisterLogic {
-	return RegisterLogic{
+func NewUserNameExistLogic(ctx context.Context, svcCtx *svc.ServiceContext) UserNameExistLogic {
+	return UserNameExistLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *RegisterLogic) Register(req types.RegisterReq) (*types.RegisterResp, error) {
-	resp, err := l.svcCtx.User.Register(l.ctx, &user.RegisterReq{
+func (l *UserNameExistLogic) UserNameExist(req types.UserNameExistReq) (*types.UserNameExistResp, error) {
+	resp, err := l.svcCtx.User.UserNameExit(l.ctx, &user.UserNameExistReq{
 		Username: req.Username,
-		Mobile:   req.Mobile,
-		Password: req.Password,
 	})
 	if err != nil {
 		return nil, err
 	}
-	return &types.RegisterResp{
-		Id:       resp.Id,
-		Username: resp.Username,
+	return &types.UserNameExistResp{
+		IsExist: resp.IsExist,
 	}, nil
 }

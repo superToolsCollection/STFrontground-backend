@@ -18,6 +18,11 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: pingHandler(serverCtx),
 			},
 			{
+				Method:  http.MethodGet,
+				Path:    "/user/userNameExist",
+				Handler: userNameExistHandler(serverCtx),
+			},
+			{
 				Method:  http.MethodPost,
 				Path:    "/user/register",
 				Handler: registerHandler(serverCtx),
@@ -27,6 +32,11 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/user/login",
 				Handler: loginHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/getVerificationCode",
+				Handler: getVerificationCodeHandler(serverCtx),
+			},
 		},
 	)
 
@@ -34,11 +44,6 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 		rest.WithMiddlewares(
 			[]rest.Middleware{serverCtx.Usercheck},
 			[]rest.Route{
-				{
-					Method:  http.MethodGet,
-					Path:    "/user/info",
-					Handler: userInfoHandler(serverCtx),
-				},
 				{
 					Method:  http.MethodGet,
 					Path:    "/api/v1/morse",

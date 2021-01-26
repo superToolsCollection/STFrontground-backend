@@ -23,7 +23,6 @@ type (
 	UsersModel interface {
 		Insert(data Users) (sql.Result, error)
 		FindOne(id int64) (*Users, error)
-		FindOneByMobile(mobile string) (*Users, error)
 		FindOneByName(name string) (*Users, error)
 		Update(data Users) error
 		Delete(id int64) error
@@ -36,9 +35,10 @@ type (
 
 	Users struct {
 		Id         int64     `db:"id"`
-		Mobile     string    `db:"mobile"`   // 手机号
-		Name       string    `db:"name"`     // 用户名
-		Password   string    `db:"password"` // 加密后的密码
+		Name       string    `db:"name"`   // 用户名
+		Avatar     string    `db:"avatar"` // 用户头像
+		Gender     string    `db:"gender"` // 性别
+		State      string    `db:"state"`  // 账户状态 0未激活 1激活
 		CreateTime time.Time `db:"create_time"`
 		UpdateTime time.Time `db:"update_time"`
 	}
@@ -52,8 +52,8 @@ func NewUsersModel(conn sqlx.SqlConn) UsersModel {
 }
 
 func (m *defaultUsersModel) Insert(data Users) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, usersRowsExpectAutoSet)
-	ret, err := m.conn.Exec(query, data.Mobile, data.Name, data.Password)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?)", m.table, usersRowsExpectAutoSet)
+	ret, err := m.conn.Exec(query, data.Name, data.Avatar, data.Gender, data.State)
 	return ret, err
 }
 
@@ -61,20 +61,6 @@ func (m *defaultUsersModel) FindOne(id int64) (*Users, error) {
 	query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", usersRows, m.table)
 	var resp Users
 	err := m.conn.QueryRow(&resp, query, id)
-	switch err {
-	case nil:
-		return &resp, nil
-	case sqlc.ErrNotFound:
-		return nil, ErrNotFound
-	default:
-		return nil, err
-	}
-}
-
-func (m *defaultUsersModel) FindOneByMobile(mobile string) (*Users, error) {
-	var resp Users
-	query := fmt.Sprintf("select %s from %s where `mobile` = ? limit 1", usersRows, m.table)
-	err := m.conn.QueryRow(&resp, query, mobile)
 	switch err {
 	case nil:
 		return &resp, nil
@@ -101,7 +87,7 @@ func (m *defaultUsersModel) FindOneByName(name string) (*Users, error) {
 
 func (m *defaultUsersModel) Update(data Users) error {
 	query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, usersRowsWithPlaceHolder)
-	_, err := m.conn.Exec(query, data.Mobile, data.Name, data.Password, data.Id)
+	_, err := m.conn.Exec(query, data.Name, data.Avatar, data.Gender, data.State, data.Id)
 	return err
 }
 

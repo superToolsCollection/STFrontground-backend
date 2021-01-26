@@ -44,8 +44,9 @@ func (l *LoginLogic) Login(req types.LoginReq) (*types.LoginResp, error) {
 	return &types.LoginResp{
 		Id:       resp.Id,
 		Username: resp.Username,
-		Mobile:   resp.Mobile,
-		Token:    jwtToken,
+		JwtToken: types.JwtToken{
+			AccessToken: jwtToken,
+		},
 	}, nil
 }
 

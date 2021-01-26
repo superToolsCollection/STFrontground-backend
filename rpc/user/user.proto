@@ -10,7 +10,6 @@ message LoginReq {
 message LoginResp {
   int64 id = 1;
   string username = 2;
-  string mobile = 3;
 }
 
 message RegisterReq {
@@ -20,21 +19,20 @@ message RegisterReq {
 }
 
 message RegisterResp {
-  bool isok = 1;
-}
-
-message UserInfoReq {
-  string id = 1;
-}
-
-message UserInfoResp {
   int64 id = 1;
   string username = 2;
-  string mobile = 3;
+}
+
+message UserNameExistReq {
+  string username = 1;
+}
+
+message UserNameExistResp {
+  bool isExist = 1;
 }
 
 service User {
   rpc login(LoginReq) returns(LoginResp);
   rpc register(RegisterReq) returns(RegisterResp);
-  rpc userInfo(UserInfoReq) returns(UserInfoResp);
+  rpc userNameExit(UserNameExistReq) returns(UserNameExistResp);
 }

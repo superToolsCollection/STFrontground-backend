@@ -16,8 +16,7 @@ type (
 	LoginResp {
 		Id       int64  `json:"id"`
 		Username string `json:"username"`
-		Mobile   string `json:"mobile"`
-		Token    string `json:"token"`
+		JwtToken
 	}
 )
 
@@ -29,15 +28,25 @@ type (
 	}
 
 	RegisterResp {
-		IsOK bool `json:"is_ok"`
+		Id       int64  `json:"id"`
+		Username string `json:"username"`
+	}
+
+	GetVerificationCodeReq {
+		Mobile string `json:"mobile"`
+	}
+
+	GetVerificationCodeResp {
+		ResultCode string `json:"result_code"`
 	}
 )
 
-type UserReply {
-	Id       int64  `json:"id"`
+type userNameExistReq {
 	Username string `json:"username"`
-	Mobile   string `json:"mobile"`
-	JwtToken
+}
+
+type userNameExistResp {
+	IsExist bool `json:"is_exist"`
 }
 
 type JwtToken {
@@ -51,6 +60,12 @@ service backend-api {
 	post /user/ping ()
 	
 	@doc(
+		summary: "查看用户名是否唯一"
+	)
+	@handler userNameExist
+	get /user/userNameExist (userNameExistReq) returns (userNameExistResp)
+	
+	@doc(
 		summary: "用户注册"
 	)
 	@handler register
@@ -61,6 +76,12 @@ service backend-api {
 	)
 	@handler login
 	post /user/login (LoginReq) returns (LoginResp)
+	
+	@doc(
+		summary: "根据手机号获取验证码"
+	)
+	@handler getVerificationCode
+	post /getVerificationCode (GetVerificationCodeReq) returns (GetVerificationCodeResp)
 }
 
 type (
@@ -98,12 +119,6 @@ type (
 	middleware: Usercheck
 )
 service backend-api{
-	@doc(
-		summary: "用户信息"
-	)
-	@handler userInfo
-	get /user/info () returns (UserReply)
-	
 	@doc(
 		summary: "生成morse码"
 	)

@@ -31,19 +31,40 @@ func (l *RegisterLogic) Register(req *user.RegisterReq) (*user.RegisterResp, err
 		return nil, errcode.ErrorDuplicateUsername
 	}
 
-	_, err = l.svcCtx.UserModel.FindOneByMobile(req.Mobile)
+	_, err = l.svcCtx.UserAuthModel.FindOneByPhone(req.Mobile)
 	if err == nil {
 		return nil, errcode.ErrorDuplicateMobile
 	}
-	_, err = l.svcCtx.UserModel.Insert(model.Users{
-		Name:     req.Username,
-		Password: req.Password,
-		Mobile:   req.Mobile,
+
+	result, err := l.svcCtx.UserModel.Insert(model.Users{
+		Name:   req.Username,
+		Gender: "保密",
+		State:  "1",
 	})
 	if err != nil {
 		return nil, errcode.ErrorUserRegisterFail
 	}
+	id, err := result.LastInsertId()
+	if err != nil {
+		return nil, errcode.ErrorUserRegisterFail
+	}
+
+	result, err = l.svcCtx.UserAuthModel.Insert(model.UsersAuth{
+		UserId:        id,
+		Name:          req.Username,
+		Password:      req.Password,
+		Phone:         req.Mobile,
+		EmailActivate: "0",
+	})
+	if err != nil {
+		return nil, errcode.ErrorUserRegisterFail
+	}
+	id, err = result.LastInsertId()
+	if err != nil {
+		return nil, errcode.ErrorUserRegisterFail
+	}
 	return &user.RegisterResp{
-		Isok: true,
+		Id:       id,
+		Username: req.Username,
 	}, nil
 }

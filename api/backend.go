@@ -40,9 +40,9 @@ func main() {
 
 	ctx := svc.NewServiceContext(c)
 	server := rest.MustNewServer(rest.RestConf{
-		Port:c.Port,
+		Port: c.Port,
 		ServiceConf: service.ServiceConf{
-			Log: logx.LogConf{Path: c.LogConfig.LogPath}, // 日志路径
+			Log:  logx.LogConf{Path: c.LogConfig.LogPath}, // 日志路径
 			Mode: c.LogConfig.LogMode,
 		},
 	})
