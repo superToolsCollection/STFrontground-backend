@@ -3,15 +3,27 @@ package logic
 import (
 	"STFrontground-backend/api/internal/svc"
 	"STFrontground-backend/api/internal/types"
-	"bytes"
+	"STFrontground-backend/rpc/pkg/errcode"
 	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 
 	"github.com/tal-tech/go-zero/core/logx"
 )
+
+type YunPianResp struct {
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
+}
+
+func (y YunPianResp) String() string {
+	return fmt.Sprintf("code:%d\n"+
+		"msg:%s\n",
+		y.Code, y.Msg)
+}
 
 type GetVerificationCodeLogic struct {
 	logx.Logger
@@ -28,39 +40,34 @@ func NewGetVerificationCodeLogic(ctx context.Context, svcCtx *svc.ServiceContext
 }
 
 func (l *GetVerificationCodeLogic) GetVerificationCode(req types.GetVerificationCodeReq) (*types.GetVerificationCodeResp, error) {
-	client := &http.Client{}
-	url := l.svcCtx.Config.VerificationCode.URL
-	info := make(map[string]string)
-	info["apikey"] = l.svcCtx.Config.VerificationCode.APIKey
-	info["mobile"] = req.Mobile
-	info["text"] = fmt.Sprintf(l.svcCtx.Config.VerificationCode.Text, 1234)
-
-	bytesData, err := json.Marshal(info)
+	u := l.svcCtx.Config.VerificationCode.URL
+	data := url.Values{
+		"apikey": {l.svcCtx.Config.VerificationCode.APIKey},
+		"mobile": {req.Mobile},
+		"text":   {fmt.Sprintf(l.svcCtx.Config.VerificationCode.Text, "1234")}}
+	request, err := http.PostForm(u, data)
 	if err != nil {
-		return nil, err
+		return nil, errcode.NewHttpRequestError
 	}
-	reader := bytes.NewReader(bytesData)
-	request, err := http.NewRequest("POST", url, reader)
-	if err != nil {
-		return nil, err
-	}
+	defer request.Body.Close()
 
 	request.Header.Add("Accept", "application/json;charset=utf-8")
 	request.Header.Add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8")
 
-	resp, err := client.Do(request)
+	result, err := ioutil.ReadAll(request.Body)
 	if err != nil {
-		return nil, err
+		return nil, errcode.ReadRequestError
 	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		return nil,
-			fmt.Errorf("wrong status code: %d",
-				resp.StatusCode)
+	if request.StatusCode != http.StatusOK {
+		return nil, errcode.HttpBadRequestError
 	}
-	result, err := ioutil.ReadAll(ioutil.NopCloser(resp.Body))
+	yunpianResp := &YunPianResp{}
+	err = json.Unmarshal(result, yunpianResp)
+	if err != nil {
+		return nil, errcode.JsonUnMarshalError
+	}
 	return &types.GetVerificationCodeResp{
-		ResultCode: string(result),
+		ResultCode: yunpianResp.Code,
+		Msg:        yunpianResp.Msg,
 	}, nil
 }

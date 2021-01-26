@@ -1,4 +1,0 @@
-{"@timestamp":"2021-01-26T21:06:01.312+08","level":"info","content":"200 - /user/login - [::1]:64513 - PostmanRuntime/7.26.8 - 39.4ms","trace":"c1d69298b191c149","span":"0"}
-{"@timestamp":"2021-01-26T21:06:22.267+08","level":"info","duration":"4.4ms","content":"fail - discov:/127.0.0.1:2379/user.rpc/user.User/login - username:\"12345\" password:\"12345\" - rpc error: code = Unknown desc = 错误码：20060002, 错误信息:：用户密码错误","trace":"02d35fb5e822dbb7","span":"0.1"}
-{"@timestamp":"2021-01-26T21:08:52.101+08","level":"info","duration":"23.1ms","content":"fail - discov:/127.0.0.1:2379/user.rpc/user.User/login - username:\"12345\" password:\"12345\" - rpc error: code = Unknown desc = 错误码：20060002, 错误信息:：用户密码错误","trace":"0d3e2bbb3ed3261a","span":"0.1"}
-{"@timestamp":"2021-01-26T21:08:52.101+08","level":"info","content":"409 - /user/login - [::1]:65280 - PostmanRuntime/7.26.8 - 23.5ms","trace":"0d3e2bbb3ed3261a","span":"0"}
