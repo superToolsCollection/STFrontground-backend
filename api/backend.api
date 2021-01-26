@@ -39,6 +39,7 @@ type (
 	GetVerificationCodeResp {
 		ResultCode int    `json:"result_code"`
 		Msg        string `json:"msg"`
+		VCode      string `json:"vcode"`
 	}
 )
 

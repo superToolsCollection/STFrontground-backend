@@ -30,6 +30,7 @@ type GetVerificationCodeReq struct {
 type GetVerificationCodeResp struct {
 	ResultCode int    `json:"result_code"`
 	Msg        string `json:"msg"`
+	VCode      string `json:"vcode"`
 }
 
 type UserNameExistReq struct {

@@ -3,6 +3,7 @@ package logic
 import (
 	"STFrontground-backend/api/internal/svc"
 	"STFrontground-backend/api/internal/types"
+	"STFrontground-backend/api/internal/util"
 	"STFrontground-backend/rpc/pkg/errcode"
 	"context"
 	"encoding/json"
@@ -41,10 +42,11 @@ func NewGetVerificationCodeLogic(ctx context.Context, svcCtx *svc.ServiceContext
 
 func (l *GetVerificationCodeLogic) GetVerificationCode(req types.GetVerificationCodeReq) (*types.GetVerificationCodeResp, error) {
 	u := l.svcCtx.Config.VerificationCode.URL
+	vCode := util.GenerateVerificationCode()
 	data := url.Values{
 		"apikey": {l.svcCtx.Config.VerificationCode.APIKey},
 		"mobile": {req.Mobile},
-		"text":   {fmt.Sprintf(l.svcCtx.Config.VerificationCode.Text, "1234")}}
+		"text":   {fmt.Sprintf(l.svcCtx.Config.VerificationCode.Text, vCode)}}
 	request, err := http.PostForm(u, data)
 	if err != nil {
 		return nil, errcode.NewHttpRequestError
@@ -69,5 +71,6 @@ func (l *GetVerificationCodeLogic) GetVerificationCode(req types.GetVerification
 	return &types.GetVerificationCodeResp{
 		ResultCode: yunpianResp.Code,
 		Msg:        yunpianResp.Msg,
+		VCode:      vCode,
 	}, nil
 }

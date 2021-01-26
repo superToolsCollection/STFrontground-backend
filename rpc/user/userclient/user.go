@@ -14,17 +14,20 @@ import (
 )
 
 type (
-	UserNameExistReq  = user.UserNameExistReq
-	UserNameExistResp = user.UserNameExistResp
+	UpdateTokenReq    = user.UpdateTokenReq
+	UpdateTokenResp   = user.UpdateTokenResp
 	LoginReq          = user.LoginReq
 	LoginResp         = user.LoginResp
 	RegisterReq       = user.RegisterReq
 	RegisterResp      = user.RegisterResp
+	UserNameExistReq  = user.UserNameExistReq
+	UserNameExistResp = user.UserNameExistResp
 
 	User interface {
 		Login(ctx context.Context, in *LoginReq) (*LoginResp, error)
 		Register(ctx context.Context, in *RegisterReq) (*RegisterResp, error)
 		UserNameExit(ctx context.Context, in *UserNameExistReq) (*UserNameExistResp, error)
+		UpdateToken(ctx context.Context, in *UpdateTokenReq) (*UpdateTokenResp, error)
 	}
 
 	defaultUser struct {
@@ -51,4 +54,9 @@ func (m *defaultUser) Register(ctx context.Context, in *RegisterReq) (*RegisterR
 func (m *defaultUser) UserNameExit(ctx context.Context, in *UserNameExistReq) (*UserNameExistResp, error) {
 	client := user.NewUserClient(m.cli.Conn())
 	return client.UserNameExit(ctx, in)
+}
+
+func (m *defaultUser) UpdateToken(ctx context.Context, in *UpdateTokenReq) (*UpdateTokenResp, error) {
+	client := user.NewUserClient(m.cli.Conn())
+	return client.UpdateToken(ctx, in)
 }

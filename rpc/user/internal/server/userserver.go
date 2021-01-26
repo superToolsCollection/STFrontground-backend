@@ -35,3 +35,8 @@ func (s *UserServer) UserNameExit(ctx context.Context, in *user.UserNameExistReq
 	l := logic.NewUserNameExitLogic(ctx, s.svcCtx)
 	return l.UserNameExit(in)
 }
+
+func (s *UserServer) UpdateToken(ctx context.Context, in *user.UpdateTokenReq) (*user.UpdateTokenResp, error) {
+	l := logic.NewUpdateTokenLogic(ctx, s.svcCtx)
+	return l.UpdateToken(in)
+}

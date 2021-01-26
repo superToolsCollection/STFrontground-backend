@@ -31,8 +31,18 @@ message UserNameExistResp {
   bool isExist = 1;
 }
 
+message UpdateTokenReq {
+  int64 userId = 1;
+  string token = 2;
+}
+
+message UpdateTokenResp {
+  int64 userId = 1;
+}
+
 service User {
   rpc login(LoginReq) returns(LoginResp);
   rpc register(RegisterReq) returns(RegisterResp);
   rpc userNameExit(UserNameExistReq) returns(UserNameExistResp);
+  rpc updateToken(UpdateTokenReq) returns(UpdateTokenResp);
 }

@@ -42,6 +42,13 @@ func (l *LoginLogic) Login(req types.LoginReq) (*types.LoginResp, error) {
 	if err != nil {
 		return nil, errcode.UnauthorizedTokenGenerate
 	}
+	_, err = l.svcCtx.User.UpdateToken(l.ctx, &user.UpdateTokenReq{
+		UserId:resp.Id,
+		Token:jwtToken,
+	})
+	if err != nil {
+		return nil, errcode.UpdateTokenError
+	}
 	return &types.LoginResp{
 		Id:       resp.Id,
 		Username: resp.Username,

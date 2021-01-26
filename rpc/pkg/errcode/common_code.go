@@ -22,4 +22,6 @@ var (
 	NewHttpRequestError = NewError(10000009, "新建http请求失败")
 	HttpBadRequestError = NewError(10000011, "http异常请求")
 	ReadRequestError    = NewError(10000012, "读取http请求返回数据异常")
+
+	UpdateTokenError    = NewError(10000013, "更新Token失败")
 )
