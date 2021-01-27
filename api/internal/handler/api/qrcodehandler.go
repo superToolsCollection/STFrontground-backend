@@ -3,23 +3,23 @@ package handler
 import (
 	"net/http"
 
-	"STFrontground-backend/api/internal/logic"
+	"STFrontground-backend/api/internal/logic/api"
 	"STFrontground-backend/api/internal/svc"
 	"STFrontground-backend/api/internal/types"
 
 	"github.com/tal-tech/go-zero/rest/httpx"
 )
 
-func morseHandler(ctx *svc.ServiceContext) http.HandlerFunc {
+func QrcodeHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.MorseReq
+		var req types.QrCodeReq
 		if err := httpx.Parse(r, &req); err != nil {
 			httpx.Error(w, err)
 			return
 		}
 
-		l := logic.NewMorseLogic(r.Context(), ctx)
-		resp, err := l.Morse(req)
+		l := logic.NewQrcodeLogic(r.Context(), ctx)
+		resp, err := l.Qrcode(req)
 		if err != nil {
 			httpx.Error(w, err)
 		} else {

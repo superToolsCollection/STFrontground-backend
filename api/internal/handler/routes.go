@@ -4,6 +4,8 @@ package handler
 import (
 	"net/http"
 
+	api "STFrontground-backend/api/internal/handler/api"
+	user "STFrontground-backend/api/internal/handler/user"
 	"STFrontground-backend/api/internal/svc"
 
 	"github.com/tal-tech/go-zero/rest"
@@ -15,27 +17,27 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 			{
 				Method:  http.MethodPost,
 				Path:    "/user/ping",
-				Handler: pingHandler(serverCtx),
+				Handler: user.PingHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
 				Path:    "/user/userNameExist",
-				Handler: userNameExistHandler(serverCtx),
+				Handler: user.UserNameExistHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
 				Path:    "/user/register",
-				Handler: registerHandler(serverCtx),
+				Handler: user.RegisterHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
 				Path:    "/user/login",
-				Handler: loginHandler(serverCtx),
+				Handler: user.LoginHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
 				Path:    "/getVerificationCode",
-				Handler: getVerificationCodeHandler(serverCtx),
+				Handler: user.GetVerificationCodeHandler(serverCtx),
 			},
 		},
 	)
@@ -47,17 +49,17 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodGet,
 					Path:    "/api/v1/morse",
-					Handler: morseHandler(serverCtx),
+					Handler: api.MorseHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodGet,
 					Path:    "/api/v1/qrcode",
-					Handler: qrcodeHandler(serverCtx),
+					Handler: api.QrcodeHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodGet,
 					Path:    "/api/v1/rgb2hex",
-					Handler: rgb2hexHandler(serverCtx),
+					Handler: api.Rgb2hexHandler(serverCtx),
 				},
 			}...,
 		),

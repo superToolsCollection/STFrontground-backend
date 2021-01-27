@@ -3,23 +3,23 @@ package handler
 import (
 	"net/http"
 
-	"STFrontground-backend/api/internal/logic"
+	"STFrontground-backend/api/internal/logic/api"
 	"STFrontground-backend/api/internal/svc"
 	"STFrontground-backend/api/internal/types"
 
 	"github.com/tal-tech/go-zero/rest/httpx"
 )
 
-func registerHandler(ctx *svc.ServiceContext) http.HandlerFunc {
+func MorseHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.RegisterReq
+		var req types.MorseReq
 		if err := httpx.Parse(r, &req); err != nil {
 			httpx.Error(w, err)
 			return
 		}
 
-		l := logic.NewRegisterLogic(r.Context(), ctx)
-		resp, err := l.Register(req)
+		l := logic.NewMorseLogic(r.Context(), ctx)
+		resp, err := l.Morse(req)
 		if err != nil {
 			httpx.Error(w, err)
 		} else {

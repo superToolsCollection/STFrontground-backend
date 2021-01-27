@@ -57,6 +57,9 @@ type JwtToken {
 	RefreshAfter int64  `json:"refreshAfter,omitempty"`
 }
 
+@server(
+	group: user
+)
 service backend-api {
 	@handler ping
 	post /user/ping ()
@@ -118,6 +121,7 @@ type (
 
 @server(
 	jwt: Auth
+	group: api
 	middleware: Usercheck
 )
 service backend-api{

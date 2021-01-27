@@ -3,12 +3,12 @@ package handler
 import (
 	"net/http"
 
-	"STFrontground-backend/api/internal/logic"
+	"STFrontground-backend/api/internal/logic/user"
 	"STFrontground-backend/api/internal/svc"
 	"github.com/tal-tech/go-zero/rest/httpx"
 )
 
-func pingHandler(ctx *svc.ServiceContext) http.HandlerFunc {
+func PingHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		l := logic.NewPingLogic(r.Context(), ctx)
