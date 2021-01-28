@@ -21,6 +21,16 @@ func NewToolsServer(svcCtx *svc.ServiceContext) *ToolsServer {
 	}
 }
 
+func (s *ToolsServer) GetToolList(ctx context.Context, in *tools.GetToolListReq) (*tools.GetToolListResp, error) {
+	l := logic.NewGetToolListLogic(ctx, s.svcCtx)
+	return l.GetToolList(in)
+}
+
+func (s *ToolsServer) GetToolListByTagName(ctx context.Context, in *tools.GetToolListByTagNameReq) (*tools.GetToolListByTagNameResp, error) {
+	l := logic.NewGetToolListByTagNameLogic(ctx, s.svcCtx)
+	return l.GetToolListByTagName(in)
+}
+
 func (s *ToolsServer) Morse(ctx context.Context, in *tools.MorseReq) (*tools.MorseResp, error) {
 	l := logic.NewMorseLogic(ctx, s.svcCtx)
 	return l.Morse(in)

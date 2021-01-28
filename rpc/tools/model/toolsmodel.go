@@ -38,6 +38,7 @@ type (
 		Name        string    `db:"name"`         // 工具名称
 		Api         string    `db:"api"`          // 工具api链接
 		ApiDescribe string    `db:"api_describe"` // 工具描述
+		Picture     string    `db:"picture"`      // 工具图标
 		CreatedOn   time.Time `db:"created_on"`   // 新建时间
 		ModifiedOn  time.Time `db:"modified_on"`  // 修改时间
 		IsDel       int64     `db:"is_del"`       // 是否删除 0为未删除 1为已删除
@@ -55,8 +56,8 @@ func NewToolsModel(conn sqlx.SqlConn) ToolsModel {
 }
 
 func (m *defaultToolsModel) Insert(data Tools) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?, ?)", m.table, toolsRowsExpectAutoSet)
-	ret, err := m.conn.Exec(query, data.Name, data.Api, data.ApiDescribe, data.CreatedOn, data.ModifiedOn, data.IsDel, data.State, data.CreatedBy, data.ModifiedBy)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", m.table, toolsRowsExpectAutoSet)
+	ret, err := m.conn.Exec(query, data.Name, data.Api, data.ApiDescribe, data.Picture, data.CreatedOn, data.ModifiedOn, data.IsDel, data.State, data.CreatedBy, data.ModifiedBy)
 	return ret, err
 }
 
@@ -90,7 +91,7 @@ func (m *defaultToolsModel) FindOneByApi(api string) (*Tools, error) {
 
 func (m *defaultToolsModel) Update(data Tools) error {
 	query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, toolsRowsWithPlaceHolder)
-	_, err := m.conn.Exec(query, data.Name, data.Api, data.ApiDescribe, data.CreatedOn, data.ModifiedOn, data.IsDel, data.State, data.CreatedBy, data.ModifiedBy, data.Id)
+	_, err := m.conn.Exec(query, data.Name, data.Api, data.ApiDescribe, data.Picture, data.CreatedOn, data.ModifiedOn, data.IsDel, data.State, data.CreatedBy, data.ModifiedBy, data.Id)
 	return err
 }
 

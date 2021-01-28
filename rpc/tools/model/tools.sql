@@ -4,6 +4,7 @@ create table `tools`
     `name`         varchar(50)       comment '工具名称',
     `api`          varchar(100)      comment '工具api链接',
     `api_describe` longtext          comment '工具描述',
+    `picture` varchar(100)         comment '工具图标',
     `created_on`   timestamp NULL DEFAULT CURRENT_TIMESTAMP comment '新建时间',
     `modified_on`  timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '修改时间',
     `is_del`       tinyint default 0 comment '是否删除 0为未删除 1为已删除',

@@ -35,7 +35,42 @@ message GetStoryResp {
   string author = 2;
 }
 
+message Tag{
+  int64 tagID = 1;
+  string tagName = 2;
+}
+
+message Tool{
+  int64 toolID = 1;
+  string name = 2;
+  string api = 3;
+  string apiDescribe = 4;
+  string picture = 5;
+  repeated Tag tags = 6;
+}
+
+message GetToolListReq {
+  int64 page = 1;
+  int64 pageSize = 2;
+}
+
+message GetToolListResp {
+  repeated Tool tools = 1;
+}
+
+message GetToolListByTagNameReq {
+  int64 page = 1;
+  int64 pageSize = 2;
+  string tagName = 3;
+}
+
+message GetToolListByTagNameResp {
+  repeated Tool tools = 1;
+}
+
 service Tools {
+  rpc GetToolList(GetToolListReq) returns(GetToolListResp);
+  rpc GetToolListByTagName(GetToolListByTagNameReq) returns(GetToolListByTagNameResp);
   rpc Morse(MorseReq) returns(MorseResp);
   rpc QrCode(QrCodeReq) returns(QrCodeResp);
   rpc Rgb2Hex(Rgb2HexReq) returns(Rgb2HexResp);

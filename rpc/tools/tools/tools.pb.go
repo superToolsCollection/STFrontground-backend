@@ -413,6 +413,360 @@ func (x *GetStoryResp) GetAuthor() string {
 	return ""
 }
 
+type Tag struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TagID   int64  `protobuf:"varint,1,opt,name=tagID,proto3" json:"tagID,omitempty"`
+	TagName string `protobuf:"bytes,2,opt,name=tagName,proto3" json:"tagName,omitempty"`
+}
+
+func (x *Tag) Reset() {
+	*x = Tag{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tools_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Tag) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Tag) ProtoMessage() {}
+
+func (x *Tag) ProtoReflect() protoreflect.Message {
+	mi := &file_tools_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Tag.ProtoReflect.Descriptor instead.
+func (*Tag) Descriptor() ([]byte, []int) {
+	return file_tools_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *Tag) GetTagID() int64 {
+	if x != nil {
+		return x.TagID
+	}
+	return 0
+}
+
+func (x *Tag) GetTagName() string {
+	if x != nil {
+		return x.TagName
+	}
+	return ""
+}
+
+type Tool struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ToolID      int64  `protobuf:"varint,1,opt,name=toolID,proto3" json:"toolID,omitempty"`
+	Name        string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Api         string `protobuf:"bytes,3,opt,name=api,proto3" json:"api,omitempty"`
+	ApiDescribe string `protobuf:"bytes,4,opt,name=apiDescribe,proto3" json:"apiDescribe,omitempty"`
+	Picture     string `protobuf:"bytes,5,opt,name=picture,proto3" json:"picture,omitempty"`
+	Tags        []*Tag `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
+}
+
+func (x *Tool) Reset() {
+	*x = Tool{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tools_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Tool) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Tool) ProtoMessage() {}
+
+func (x *Tool) ProtoReflect() protoreflect.Message {
+	mi := &file_tools_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Tool.ProtoReflect.Descriptor instead.
+func (*Tool) Descriptor() ([]byte, []int) {
+	return file_tools_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *Tool) GetToolID() int64 {
+	if x != nil {
+		return x.ToolID
+	}
+	return 0
+}
+
+func (x *Tool) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Tool) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *Tool) GetApiDescribe() string {
+	if x != nil {
+		return x.ApiDescribe
+	}
+	return ""
+}
+
+func (x *Tool) GetPicture() string {
+	if x != nil {
+		return x.Picture
+	}
+	return ""
+}
+
+func (x *Tool) GetTags() []*Tag {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+type GetToolListReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Page     int64 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize int64 `protobuf:"varint,2,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
+}
+
+func (x *GetToolListReq) Reset() {
+	*x = GetToolListReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tools_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetToolListReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetToolListReq) ProtoMessage() {}
+
+func (x *GetToolListReq) ProtoReflect() protoreflect.Message {
+	mi := &file_tools_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetToolListReq.ProtoReflect.Descriptor instead.
+func (*GetToolListReq) Descriptor() ([]byte, []int) {
+	return file_tools_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetToolListReq) GetPage() int64 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetToolListReq) GetPageSize() int64 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type GetToolListResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Tools []*Tool `protobuf:"bytes,1,rep,name=tools,proto3" json:"tools,omitempty"`
+}
+
+func (x *GetToolListResp) Reset() {
+	*x = GetToolListResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tools_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetToolListResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetToolListResp) ProtoMessage() {}
+
+func (x *GetToolListResp) ProtoReflect() protoreflect.Message {
+	mi := &file_tools_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetToolListResp.ProtoReflect.Descriptor instead.
+func (*GetToolListResp) Descriptor() ([]byte, []int) {
+	return file_tools_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetToolListResp) GetTools() []*Tool {
+	if x != nil {
+		return x.Tools
+	}
+	return nil
+}
+
+type GetToolListByTagNameReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Page     int64  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize int64  `protobuf:"varint,2,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
+	TagName  string `protobuf:"bytes,3,opt,name=tagName,proto3" json:"tagName,omitempty"`
+}
+
+func (x *GetToolListByTagNameReq) Reset() {
+	*x = GetToolListByTagNameReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tools_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetToolListByTagNameReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetToolListByTagNameReq) ProtoMessage() {}
+
+func (x *GetToolListByTagNameReq) ProtoReflect() protoreflect.Message {
+	mi := &file_tools_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetToolListByTagNameReq.ProtoReflect.Descriptor instead.
+func (*GetToolListByTagNameReq) Descriptor() ([]byte, []int) {
+	return file_tools_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetToolListByTagNameReq) GetPage() int64 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetToolListByTagNameReq) GetPageSize() int64 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *GetToolListByTagNameReq) GetTagName() string {
+	if x != nil {
+		return x.TagName
+	}
+	return ""
+}
+
+type GetToolListByTagNameResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Tools []*Tool `protobuf:"bytes,1,rep,name=tools,proto3" json:"tools,omitempty"`
+}
+
+func (x *GetToolListByTagNameResp) Reset() {
+	*x = GetToolListByTagNameResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tools_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetToolListByTagNameResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetToolListByTagNameResp) ProtoMessage() {}
+
+func (x *GetToolListByTagNameResp) ProtoReflect() protoreflect.Message {
+	mi := &file_tools_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetToolListByTagNameResp.ProtoReflect.Descriptor instead.
+func (*GetToolListByTagNameResp) Descriptor() ([]byte, []int) {
+	return file_tools_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetToolListByTagNameResp) GetTools() []*Tool {
+	if x != nil {
+		return x.Tools
+	}
+	return nil
+}
+
 var File_tools_proto protoreflect.FileDescriptor
 
 var file_tools_proto_rawDesc = []byte{
@@ -437,20 +791,60 @@ var file_tools_proto_rawDesc = []byte{
 	0x52, 0x65, 0x73, 0x70, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x05, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x75,
 	0x74, 0x68, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x75, 0x74, 0x68,
-	0x6f, 0x72, 0x32, 0xc6, 0x01, 0x0a, 0x05, 0x54, 0x6f, 0x6f, 0x6c, 0x73, 0x12, 0x2a, 0x0a, 0x05,
-	0x4d, 0x6f, 0x72, 0x73, 0x65, 0x12, 0x0f, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x4d, 0x6f,
-	0x72, 0x73, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x10, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x4d,
-	0x6f, 0x72, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x2d, 0x0a, 0x06, 0x51, 0x72, 0x43, 0x6f,
-	0x64, 0x65, 0x12, 0x10, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x51, 0x72, 0x43, 0x6f, 0x64,
-	0x65, 0x52, 0x65, 0x71, 0x1a, 0x11, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x51, 0x72, 0x43,
-	0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x30, 0x0a, 0x07, 0x52, 0x67, 0x62, 0x32, 0x48,
-	0x65, 0x78, 0x12, 0x11, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x52, 0x67, 0x62, 0x32, 0x48,
-	0x65, 0x78, 0x52, 0x65, 0x71, 0x1a, 0x12, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x52, 0x67,
-	0x62, 0x32, 0x48, 0x65, 0x78, 0x52, 0x65, 0x73, 0x70, 0x12, 0x30, 0x0a, 0x05, 0x53, 0x74, 0x6f,
-	0x72, 0x79, 0x12, 0x12, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x74,
-	0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x1a, 0x13, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x47,
-	0x65, 0x74, 0x53, 0x74, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x6f, 0x72, 0x22, 0x35, 0x0a, 0x03, 0x54, 0x61, 0x67, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x61, 0x67,
+	0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x74, 0x61, 0x67, 0x49, 0x44, 0x12,
+	0x18, 0x0a, 0x07, 0x74, 0x61, 0x67, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x07, 0x74, 0x61, 0x67, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0xa0, 0x01, 0x0a, 0x04, 0x54, 0x6f,
+	0x6f, 0x6c, 0x12, 0x16, 0x0a, 0x06, 0x74, 0x6f, 0x6f, 0x6c, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x06, 0x74, 0x6f, 0x6f, 0x6c, 0x49, 0x44, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x10,
+	0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69,
+	0x12, 0x20, 0x0a, 0x0b, 0x61, 0x70, 0x69, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x61, 0x70, 0x69, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69,
+	0x62, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x69, 0x63, 0x74, 0x75, 0x72, 0x65, 0x18, 0x05, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x07, 0x70, 0x69, 0x63, 0x74, 0x75, 0x72, 0x65, 0x12, 0x1e, 0x0a, 0x04,
+	0x74, 0x61, 0x67, 0x73, 0x18, 0x06, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x74, 0x6f, 0x6f,
+	0x6c, 0x73, 0x2e, 0x54, 0x61, 0x67, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x22, 0x40, 0x0a, 0x0e,
+	0x47, 0x65, 0x74, 0x54, 0x6f, 0x6f, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x12, 0x12,
+	0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x70, 0x61,
+	0x67, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x22, 0x34,
+	0x0a, 0x0f, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x6f, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x12, 0x21, 0x0a, 0x05, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x0b, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x54, 0x6f, 0x6f, 0x6c, 0x52, 0x05, 0x74,
+	0x6f, 0x6f, 0x6c, 0x73, 0x22, 0x63, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x6f, 0x6c, 0x4c,
+	0x69, 0x73, 0x74, 0x42, 0x79, 0x54, 0x61, 0x67, 0x4e, 0x61, 0x6d, 0x65, 0x52, 0x65, 0x71, 0x12,
+	0x12, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x70,
+	0x61, 0x67, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x12,
+	0x18, 0x0a, 0x07, 0x74, 0x61, 0x67, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x07, 0x74, 0x61, 0x67, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x3d, 0x0a, 0x18, 0x47, 0x65, 0x74,
+	0x54, 0x6f, 0x6f, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x79, 0x54, 0x61, 0x67, 0x4e, 0x61, 0x6d,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x21, 0x0a, 0x05, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x54, 0x6f, 0x6f,
+	0x6c, 0x52, 0x05, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x32, 0xdd, 0x02, 0x0a, 0x05, 0x54, 0x6f, 0x6f,
+	0x6c, 0x73, 0x12, 0x3c, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x6f, 0x6c, 0x4c, 0x69, 0x73,
+	0x74, 0x12, 0x15, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x6f,
+	0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x1a, 0x16, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73,
+	0x2e, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x6f, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x12, 0x57, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x6f, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x42,
+	0x79, 0x54, 0x61, 0x67, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1e, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73,
+	0x2e, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x6f, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x79, 0x54, 0x61,
+	0x67, 0x4e, 0x61, 0x6d, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x1f, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73,
+	0x2e, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x6f, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x79, 0x54, 0x61,
+	0x67, 0x4e, 0x61, 0x6d, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x2a, 0x0a, 0x05, 0x4d, 0x6f, 0x72,
+	0x73, 0x65, 0x12, 0x0f, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x4d, 0x6f, 0x72, 0x73, 0x65,
+	0x52, 0x65, 0x71, 0x1a, 0x10, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x4d, 0x6f, 0x72, 0x73,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x2d, 0x0a, 0x06, 0x51, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x12,
+	0x10, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x51, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x52, 0x65,
+	0x71, 0x1a, 0x11, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x51, 0x72, 0x43, 0x6f, 0x64, 0x65,
+	0x52, 0x65, 0x73, 0x70, 0x12, 0x30, 0x0a, 0x07, 0x52, 0x67, 0x62, 0x32, 0x48, 0x65, 0x78, 0x12,
+	0x11, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x52, 0x67, 0x62, 0x32, 0x48, 0x65, 0x78, 0x52,
+	0x65, 0x71, 0x1a, 0x12, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x52, 0x67, 0x62, 0x32, 0x48,
+	0x65, 0x78, 0x52, 0x65, 0x73, 0x70, 0x12, 0x30, 0x0a, 0x05, 0x53, 0x74, 0x6f, 0x72, 0x79, 0x12,
+	0x12, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x74, 0x6f, 0x72, 0x79,
+	0x52, 0x65, 0x71, 0x1a, 0x13, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x53,
+	0x74, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -465,31 +859,44 @@ func file_tools_proto_rawDescGZIP() []byte {
 	return file_tools_proto_rawDescData
 }
 
-var file_tools_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_tools_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_tools_proto_goTypes = []interface{}{
-	(*MorseReq)(nil),     // 0: tools.MorseReq
-	(*MorseResp)(nil),    // 1: tools.MorseResp
-	(*QrCodeReq)(nil),    // 2: tools.QrCodeReq
-	(*QrCodeResp)(nil),   // 3: tools.QrCodeResp
-	(*Rgb2HexReq)(nil),   // 4: tools.Rgb2HexReq
-	(*Rgb2HexResp)(nil),  // 5: tools.Rgb2HexResp
-	(*GetStoryReq)(nil),  // 6: tools.GetStoryReq
-	(*GetStoryResp)(nil), // 7: tools.GetStoryResp
+	(*MorseReq)(nil),                 // 0: tools.MorseReq
+	(*MorseResp)(nil),                // 1: tools.MorseResp
+	(*QrCodeReq)(nil),                // 2: tools.QrCodeReq
+	(*QrCodeResp)(nil),               // 3: tools.QrCodeResp
+	(*Rgb2HexReq)(nil),               // 4: tools.Rgb2HexReq
+	(*Rgb2HexResp)(nil),              // 5: tools.Rgb2HexResp
+	(*GetStoryReq)(nil),              // 6: tools.GetStoryReq
+	(*GetStoryResp)(nil),             // 7: tools.GetStoryResp
+	(*Tag)(nil),                      // 8: tools.Tag
+	(*Tool)(nil),                     // 9: tools.Tool
+	(*GetToolListReq)(nil),           // 10: tools.GetToolListReq
+	(*GetToolListResp)(nil),          // 11: tools.GetToolListResp
+	(*GetToolListByTagNameReq)(nil),  // 12: tools.GetToolListByTagNameReq
+	(*GetToolListByTagNameResp)(nil), // 13: tools.GetToolListByTagNameResp
 }
 var file_tools_proto_depIdxs = []int32{
-	0, // 0: tools.Tools.Morse:input_type -> tools.MorseReq
-	2, // 1: tools.Tools.QrCode:input_type -> tools.QrCodeReq
-	4, // 2: tools.Tools.Rgb2Hex:input_type -> tools.Rgb2HexReq
-	6, // 3: tools.Tools.Story:input_type -> tools.GetStoryReq
-	1, // 4: tools.Tools.Morse:output_type -> tools.MorseResp
-	3, // 5: tools.Tools.QrCode:output_type -> tools.QrCodeResp
-	5, // 6: tools.Tools.Rgb2Hex:output_type -> tools.Rgb2HexResp
-	7, // 7: tools.Tools.Story:output_type -> tools.GetStoryResp
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	8,  // 0: tools.Tool.tags:type_name -> tools.Tag
+	9,  // 1: tools.GetToolListResp.tools:type_name -> tools.Tool
+	9,  // 2: tools.GetToolListByTagNameResp.tools:type_name -> tools.Tool
+	10, // 3: tools.Tools.GetToolList:input_type -> tools.GetToolListReq
+	12, // 4: tools.Tools.GetToolListByTagName:input_type -> tools.GetToolListByTagNameReq
+	0,  // 5: tools.Tools.Morse:input_type -> tools.MorseReq
+	2,  // 6: tools.Tools.QrCode:input_type -> tools.QrCodeReq
+	4,  // 7: tools.Tools.Rgb2Hex:input_type -> tools.Rgb2HexReq
+	6,  // 8: tools.Tools.Story:input_type -> tools.GetStoryReq
+	11, // 9: tools.Tools.GetToolList:output_type -> tools.GetToolListResp
+	13, // 10: tools.Tools.GetToolListByTagName:output_type -> tools.GetToolListByTagNameResp
+	1,  // 11: tools.Tools.Morse:output_type -> tools.MorseResp
+	3,  // 12: tools.Tools.QrCode:output_type -> tools.QrCodeResp
+	5,  // 13: tools.Tools.Rgb2Hex:output_type -> tools.Rgb2HexResp
+	7,  // 14: tools.Tools.Story:output_type -> tools.GetStoryResp
+	9,  // [9:15] is the sub-list for method output_type
+	3,  // [3:9] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_tools_proto_init() }
@@ -594,6 +1001,78 @@ func file_tools_proto_init() {
 				return nil
 			}
 		}
+		file_tools_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Tag); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tools_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Tool); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tools_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetToolListReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tools_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetToolListResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tools_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetToolListByTagNameReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tools_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetToolListByTagNameResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -601,7 +1080,7 @@ func file_tools_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_tools_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -627,6 +1106,8 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ToolsClient interface {
+	GetToolList(ctx context.Context, in *GetToolListReq, opts ...grpc.CallOption) (*GetToolListResp, error)
+	GetToolListByTagName(ctx context.Context, in *GetToolListByTagNameReq, opts ...grpc.CallOption) (*GetToolListByTagNameResp, error)
 	Morse(ctx context.Context, in *MorseReq, opts ...grpc.CallOption) (*MorseResp, error)
 	QrCode(ctx context.Context, in *QrCodeReq, opts ...grpc.CallOption) (*QrCodeResp, error)
 	Rgb2Hex(ctx context.Context, in *Rgb2HexReq, opts ...grpc.CallOption) (*Rgb2HexResp, error)
@@ -639,6 +1120,24 @@ type toolsClient struct {
 
 func NewToolsClient(cc grpc.ClientConnInterface) ToolsClient {
 	return &toolsClient{cc}
+}
+
+func (c *toolsClient) GetToolList(ctx context.Context, in *GetToolListReq, opts ...grpc.CallOption) (*GetToolListResp, error) {
+	out := new(GetToolListResp)
+	err := c.cc.Invoke(ctx, "/tools.Tools/GetToolList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *toolsClient) GetToolListByTagName(ctx context.Context, in *GetToolListByTagNameReq, opts ...grpc.CallOption) (*GetToolListByTagNameResp, error) {
+	out := new(GetToolListByTagNameResp)
+	err := c.cc.Invoke(ctx, "/tools.Tools/GetToolListByTagName", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *toolsClient) Morse(ctx context.Context, in *MorseReq, opts ...grpc.CallOption) (*MorseResp, error) {
@@ -679,6 +1178,8 @@ func (c *toolsClient) Story(ctx context.Context, in *GetStoryReq, opts ...grpc.C
 
 // ToolsServer is the server API for Tools service.
 type ToolsServer interface {
+	GetToolList(context.Context, *GetToolListReq) (*GetToolListResp, error)
+	GetToolListByTagName(context.Context, *GetToolListByTagNameReq) (*GetToolListByTagNameResp, error)
 	Morse(context.Context, *MorseReq) (*MorseResp, error)
 	QrCode(context.Context, *QrCodeReq) (*QrCodeResp, error)
 	Rgb2Hex(context.Context, *Rgb2HexReq) (*Rgb2HexResp, error)
@@ -689,6 +1190,12 @@ type ToolsServer interface {
 type UnimplementedToolsServer struct {
 }
 
+func (*UnimplementedToolsServer) GetToolList(context.Context, *GetToolListReq) (*GetToolListResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetToolList not implemented")
+}
+func (*UnimplementedToolsServer) GetToolListByTagName(context.Context, *GetToolListByTagNameReq) (*GetToolListByTagNameResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetToolListByTagName not implemented")
+}
 func (*UnimplementedToolsServer) Morse(context.Context, *MorseReq) (*MorseResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Morse not implemented")
 }
@@ -704,6 +1211,42 @@ func (*UnimplementedToolsServer) Story(context.Context, *GetStoryReq) (*GetStory
 
 func RegisterToolsServer(s *grpc.Server, srv ToolsServer) {
 	s.RegisterService(&_Tools_serviceDesc, srv)
+}
+
+func _Tools_GetToolList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetToolListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolsServer).GetToolList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tools.Tools/GetToolList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolsServer).GetToolList(ctx, req.(*GetToolListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tools_GetToolListByTagName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetToolListByTagNameReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolsServer).GetToolListByTagName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tools.Tools/GetToolListByTagName",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolsServer).GetToolListByTagName(ctx, req.(*GetToolListByTagNameReq))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Tools_Morse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -782,6 +1325,14 @@ var _Tools_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "tools.Tools",
 	HandlerType: (*ToolsServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetToolList",
+			Handler:    _Tools_GetToolList_Handler,
+		},
+		{
+			MethodName: "GetToolListByTagName",
+			Handler:    _Tools_GetToolListByTagName_Handler,
+		},
 		{
 			MethodName: "Morse",
 			Handler:    _Tools_Morse_Handler,
