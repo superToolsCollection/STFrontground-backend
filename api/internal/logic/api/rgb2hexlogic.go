@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"STFrontground-backend/rpc/tools/tools"
 	"context"
 
 	"STFrontground-backend/api/internal/svc"
@@ -24,7 +25,13 @@ func NewRgb2hexLogic(ctx context.Context, svcCtx *svc.ServiceContext) Rgb2hexLog
 }
 
 func (l *Rgb2hexLogic) Rgb2hex(req types.Rgb2HexReq) (*types.Rgb2HexResp, error) {
-	// todo: add your logic here and delete this line
-
-	return &types.Rgb2HexResp{}, nil
+	resp, err := l.svcCtx.Tools.Rgb2Hex(l.ctx, &tools.Rgb2HexReq{
+		Str: req.Str,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &types.Rgb2HexResp{
+		Rgb2HexStr: resp.Rgb2HexStr,
+	}, nil
 }

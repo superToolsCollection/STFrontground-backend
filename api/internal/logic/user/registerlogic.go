@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"STFrontground-backend/rpc/user/user"
 	"context"
 
 	"STFrontground-backend/api/internal/svc"
@@ -24,7 +25,16 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) RegisterL
 }
 
 func (l *RegisterLogic) Register(req types.RegisterReq) (*types.RegisterResp, error) {
-	// todo: add your logic here and delete this line
-
-	return &types.RegisterResp{}, nil
+	resp, err := l.svcCtx.User.Register(l.ctx, &user.RegisterReq{
+		Username: req.Username,
+		Mobile:   req.Mobile,
+		Password: req.Password,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &types.RegisterResp{
+		Id:       resp.Id,
+		Username: resp.Username,
+	}, nil
 }

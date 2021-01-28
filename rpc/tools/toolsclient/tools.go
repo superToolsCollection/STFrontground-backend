@@ -14,17 +14,20 @@ import (
 )
 
 type (
-	MorseReq    = tools.MorseReq
-	MorseResp   = tools.MorseResp
-	QrCodeReq   = tools.QrCodeReq
-	QrCodeResp  = tools.QrCodeResp
-	Rgb2HexReq  = tools.Rgb2HexReq
-	Rgb2HexResp = tools.Rgb2HexResp
+	MorseResp    = tools.MorseResp
+	QrCodeReq    = tools.QrCodeReq
+	QrCodeResp   = tools.QrCodeResp
+	Rgb2HexReq   = tools.Rgb2HexReq
+	Rgb2HexResp  = tools.Rgb2HexResp
+	GetStoryReq  = tools.GetStoryReq
+	GetStoryResp = tools.GetStoryResp
+	MorseReq     = tools.MorseReq
 
 	Tools interface {
 		Morse(ctx context.Context, in *MorseReq) (*MorseResp, error)
 		QrCode(ctx context.Context, in *QrCodeReq) (*QrCodeResp, error)
 		Rgb2Hex(ctx context.Context, in *Rgb2HexReq) (*Rgb2HexResp, error)
+		Story(ctx context.Context, in *GetStoryReq) (*GetStoryResp, error)
 	}
 
 	defaultTools struct {
@@ -51,4 +54,9 @@ func (m *defaultTools) QrCode(ctx context.Context, in *QrCodeReq) (*QrCodeResp, 
 func (m *defaultTools) Rgb2Hex(ctx context.Context, in *Rgb2HexReq) (*Rgb2HexResp, error) {
 	client := tools.NewToolsClient(m.cli.Conn())
 	return client.Rgb2Hex(ctx, in)
+}
+
+func (m *defaultTools) Story(ctx context.Context, in *GetStoryReq) (*GetStoryResp, error) {
+	client := tools.NewToolsClient(m.cli.Conn())
+	return client.Story(ctx, in)
 }

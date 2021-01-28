@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"STFrontground-backend/rpc/tools/tools"
 	"context"
 
 	"STFrontground-backend/api/internal/svc"
@@ -24,7 +25,13 @@ func NewQrcodeLogic(ctx context.Context, svcCtx *svc.ServiceContext) QrcodeLogic
 }
 
 func (l *QrcodeLogic) Qrcode(req types.QrCodeReq) (*types.QrCodeResp, error) {
-	// todo: add your logic here and delete this line
-
-	return &types.QrCodeResp{}, nil
+	resp, err := l.svcCtx.Tools.QrCode(l.ctx, &tools.QrCodeReq{
+		Str: req.Str,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &types.QrCodeResp{
+		QrCodeStr: resp.QrCodeStr,
+	}, nil
 }

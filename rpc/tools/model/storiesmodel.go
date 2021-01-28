@@ -23,6 +23,7 @@ type (
 	StoriesModel interface {
 		Insert(data Stories) (sql.Result, error)
 		FindOne(id int64) (*Stories, error)
+		FindOneRandom() (*Stories, error)
 		Update(data Stories) error
 		Delete(id int64) error
 	}
@@ -62,6 +63,20 @@ func (m *defaultStoriesModel) FindOne(id int64) (*Stories, error) {
 	query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", storiesRows, m.table)
 	var resp Stories
 	err := m.conn.QueryRow(&resp, query, id)
+	switch err {
+	case nil:
+		return &resp, nil
+	case sqlc.ErrNotFound:
+		return nil, ErrNotFound
+	default:
+		return nil, err
+	}
+}
+
+func (m *defaultStoriesModel) FindOneRandom() (*Stories, error) {
+	query := fmt.Sprintf(`SELECT s1.id AS id, s1.author AS author, s1.story AS story, s1.state as state FROM %s AS s1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM stories) - (SELECT MIN(id) FROM stories)) + (SELECT MIN(id) FROM stories)) AS id) AS s2 ON s1.id >= s2.id LIMIT 1;`, m.table)
+	var resp Stories
+	err := m.conn.QueryRow(&resp, query)
 	switch err {
 	case nil:
 		return &resp, nil

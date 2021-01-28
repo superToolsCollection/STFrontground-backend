@@ -35,3 +35,8 @@ func (s *ToolsServer) Rgb2Hex(ctx context.Context, in *tools.Rgb2HexReq) (*tools
 	l := logic.NewRgb2HexLogic(ctx, s.svcCtx)
 	return l.Rgb2Hex(in)
 }
+
+func (s *ToolsServer) Story(ctx context.Context, in *tools.GetStoryReq) (*tools.GetStoryResp, error) {
+	l := logic.NewStoryLogic(ctx, s.svcCtx)
+	return l.Story(in)
+}

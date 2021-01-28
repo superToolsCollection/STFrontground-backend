@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"STFrontground-backend/rpc/tools/tools"
 	"context"
 
 	"STFrontground-backend/api/internal/svc"
@@ -24,7 +25,14 @@ func NewMorseLogic(ctx context.Context, svcCtx *svc.ServiceContext) MorseLogic {
 }
 
 func (l *MorseLogic) Morse(req types.MorseReq) (*types.MorseResp, error) {
-	// todo: add your logic here and delete this line
+	resp, err := l.svcCtx.Tools.Morse(l.ctx, &tools.MorseReq{
+		Str: req.Str,
+	})
+	if err != nil {
+		return nil, err
+	}
 
-	return &types.MorseResp{}, nil
+	return &types.MorseResp{
+		MorseStr: resp.MorseStr,
+	}, nil
 }

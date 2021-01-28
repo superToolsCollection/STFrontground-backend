@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"STFrontground-backend/rpc/user/user"
 	"context"
 
 	"STFrontground-backend/api/internal/svc"
@@ -24,7 +25,13 @@ func NewUserNameExistLogic(ctx context.Context, svcCtx *svc.ServiceContext) User
 }
 
 func (l *UserNameExistLogic) UserNameExist(req types.UserNameExistReq) (*types.UserNameExistResp, error) {
-	// todo: add your logic here and delete this line
-
-	return &types.UserNameExistResp{}, nil
+	resp, err := l.svcCtx.User.UserNameExit(l.ctx, &user.UserNameExistReq{
+		Username: req.Username,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &types.UserNameExistResp{
+		IsExist: resp.IsExist,
+	}, nil
 }

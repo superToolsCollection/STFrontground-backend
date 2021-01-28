@@ -26,8 +26,18 @@ message Rgb2HexResp {
   string rgb2HexStr = 1;
 }
 
+message GetStoryReq {
+  int64 id = 1;
+}
+
+message GetStoryResp {
+  string story = 1;
+  string author = 2;
+}
+
 service Tools {
   rpc Morse(MorseReq) returns(MorseResp);
   rpc QrCode(QrCodeReq) returns(QrCodeResp);
   rpc Rgb2Hex(Rgb2HexReq) returns(Rgb2HexResp);
+  rpc Story(GetStoryReq) returns(GetStoryResp);
 }

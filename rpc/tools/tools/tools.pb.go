@@ -311,6 +311,108 @@ func (x *Rgb2HexResp) GetRgb2HexStr() string {
 	return ""
 }
 
+type GetStoryReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *GetStoryReq) Reset() {
+	*x = GetStoryReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tools_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetStoryReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetStoryReq) ProtoMessage() {}
+
+func (x *GetStoryReq) ProtoReflect() protoreflect.Message {
+	mi := &file_tools_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetStoryReq.ProtoReflect.Descriptor instead.
+func (*GetStoryReq) Descriptor() ([]byte, []int) {
+	return file_tools_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetStoryReq) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type GetStoryResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Story  string `protobuf:"bytes,1,opt,name=story,proto3" json:"story,omitempty"`
+	Author string `protobuf:"bytes,2,opt,name=author,proto3" json:"author,omitempty"`
+}
+
+func (x *GetStoryResp) Reset() {
+	*x = GetStoryResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tools_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetStoryResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetStoryResp) ProtoMessage() {}
+
+func (x *GetStoryResp) ProtoReflect() protoreflect.Message {
+	mi := &file_tools_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetStoryResp.ProtoReflect.Descriptor instead.
+func (*GetStoryResp) Descriptor() ([]byte, []int) {
+	return file_tools_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetStoryResp) GetStory() string {
+	if x != nil {
+		return x.Story
+	}
+	return ""
+}
+
+func (x *GetStoryResp) GetAuthor() string {
+	if x != nil {
+		return x.Author
+	}
+	return ""
+}
+
 var File_tools_proto protoreflect.FileDescriptor
 
 var file_tools_proto_rawDesc = []byte{
@@ -329,17 +431,26 @@ var file_tools_proto_rawDesc = []byte{
 	0x09, 0x52, 0x03, 0x73, 0x74, 0x72, 0x22, 0x2d, 0x0a, 0x0b, 0x52, 0x67, 0x62, 0x32, 0x48, 0x65,
 	0x78, 0x52, 0x65, 0x73, 0x70, 0x12, 0x1e, 0x0a, 0x0a, 0x72, 0x67, 0x62, 0x32, 0x48, 0x65, 0x78,
 	0x53, 0x74, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x72, 0x67, 0x62, 0x32, 0x48,
-	0x65, 0x78, 0x53, 0x74, 0x72, 0x32, 0x94, 0x01, 0x0a, 0x05, 0x54, 0x6f, 0x6f, 0x6c, 0x73, 0x12,
-	0x2a, 0x0a, 0x05, 0x4d, 0x6f, 0x72, 0x73, 0x65, 0x12, 0x0f, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73,
-	0x2e, 0x4d, 0x6f, 0x72, 0x73, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x10, 0x2e, 0x74, 0x6f, 0x6f, 0x6c,
-	0x73, 0x2e, 0x4d, 0x6f, 0x72, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x2d, 0x0a, 0x06, 0x51,
-	0x72, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x10, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x51, 0x72,
-	0x43, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x11, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e,
-	0x51, 0x72, 0x43, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x30, 0x0a, 0x07, 0x52, 0x67,
-	0x62, 0x32, 0x48, 0x65, 0x78, 0x12, 0x11, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x52, 0x67,
-	0x62, 0x32, 0x48, 0x65, 0x78, 0x52, 0x65, 0x71, 0x1a, 0x12, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73,
-	0x2e, 0x52, 0x67, 0x62, 0x32, 0x48, 0x65, 0x78, 0x52, 0x65, 0x73, 0x70, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x78, 0x53, 0x74, 0x72, 0x22, 0x1d, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x53, 0x74, 0x6f, 0x72,
+	0x79, 0x52, 0x65, 0x71, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x02, 0x69, 0x64, 0x22, 0x3c, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x53, 0x74, 0x6f, 0x72, 0x79,
+	0x52, 0x65, 0x73, 0x70, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x05, 0x73, 0x74, 0x6f, 0x72, 0x79, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x75,
+	0x74, 0x68, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x75, 0x74, 0x68,
+	0x6f, 0x72, 0x32, 0xc6, 0x01, 0x0a, 0x05, 0x54, 0x6f, 0x6f, 0x6c, 0x73, 0x12, 0x2a, 0x0a, 0x05,
+	0x4d, 0x6f, 0x72, 0x73, 0x65, 0x12, 0x0f, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x4d, 0x6f,
+	0x72, 0x73, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x10, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x4d,
+	0x6f, 0x72, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x2d, 0x0a, 0x06, 0x51, 0x72, 0x43, 0x6f,
+	0x64, 0x65, 0x12, 0x10, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x51, 0x72, 0x43, 0x6f, 0x64,
+	0x65, 0x52, 0x65, 0x71, 0x1a, 0x11, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x51, 0x72, 0x43,
+	0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x30, 0x0a, 0x07, 0x52, 0x67, 0x62, 0x32, 0x48,
+	0x65, 0x78, 0x12, 0x11, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x52, 0x67, 0x62, 0x32, 0x48,
+	0x65, 0x78, 0x52, 0x65, 0x71, 0x1a, 0x12, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x52, 0x67,
+	0x62, 0x32, 0x48, 0x65, 0x78, 0x52, 0x65, 0x73, 0x70, 0x12, 0x30, 0x0a, 0x05, 0x53, 0x74, 0x6f,
+	0x72, 0x79, 0x12, 0x12, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x74,
+	0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x1a, 0x13, 0x2e, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2e, 0x47,
+	0x65, 0x74, 0x53, 0x74, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -354,24 +465,28 @@ func file_tools_proto_rawDescGZIP() []byte {
 	return file_tools_proto_rawDescData
 }
 
-var file_tools_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_tools_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_tools_proto_goTypes = []interface{}{
-	(*MorseReq)(nil),    // 0: tools.MorseReq
-	(*MorseResp)(nil),   // 1: tools.MorseResp
-	(*QrCodeReq)(nil),   // 2: tools.QrCodeReq
-	(*QrCodeResp)(nil),  // 3: tools.QrCodeResp
-	(*Rgb2HexReq)(nil),  // 4: tools.Rgb2HexReq
-	(*Rgb2HexResp)(nil), // 5: tools.Rgb2HexResp
+	(*MorseReq)(nil),     // 0: tools.MorseReq
+	(*MorseResp)(nil),    // 1: tools.MorseResp
+	(*QrCodeReq)(nil),    // 2: tools.QrCodeReq
+	(*QrCodeResp)(nil),   // 3: tools.QrCodeResp
+	(*Rgb2HexReq)(nil),   // 4: tools.Rgb2HexReq
+	(*Rgb2HexResp)(nil),  // 5: tools.Rgb2HexResp
+	(*GetStoryReq)(nil),  // 6: tools.GetStoryReq
+	(*GetStoryResp)(nil), // 7: tools.GetStoryResp
 }
 var file_tools_proto_depIdxs = []int32{
 	0, // 0: tools.Tools.Morse:input_type -> tools.MorseReq
 	2, // 1: tools.Tools.QrCode:input_type -> tools.QrCodeReq
 	4, // 2: tools.Tools.Rgb2Hex:input_type -> tools.Rgb2HexReq
-	1, // 3: tools.Tools.Morse:output_type -> tools.MorseResp
-	3, // 4: tools.Tools.QrCode:output_type -> tools.QrCodeResp
-	5, // 5: tools.Tools.Rgb2Hex:output_type -> tools.Rgb2HexResp
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	6, // 3: tools.Tools.Story:input_type -> tools.GetStoryReq
+	1, // 4: tools.Tools.Morse:output_type -> tools.MorseResp
+	3, // 5: tools.Tools.QrCode:output_type -> tools.QrCodeResp
+	5, // 6: tools.Tools.Rgb2Hex:output_type -> tools.Rgb2HexResp
+	7, // 7: tools.Tools.Story:output_type -> tools.GetStoryResp
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -455,6 +570,30 @@ func file_tools_proto_init() {
 				return nil
 			}
 		}
+		file_tools_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetStoryReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tools_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetStoryResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -462,7 +601,7 @@ func file_tools_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_tools_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -491,6 +630,7 @@ type ToolsClient interface {
 	Morse(ctx context.Context, in *MorseReq, opts ...grpc.CallOption) (*MorseResp, error)
 	QrCode(ctx context.Context, in *QrCodeReq, opts ...grpc.CallOption) (*QrCodeResp, error)
 	Rgb2Hex(ctx context.Context, in *Rgb2HexReq, opts ...grpc.CallOption) (*Rgb2HexResp, error)
+	Story(ctx context.Context, in *GetStoryReq, opts ...grpc.CallOption) (*GetStoryResp, error)
 }
 
 type toolsClient struct {
@@ -528,11 +668,21 @@ func (c *toolsClient) Rgb2Hex(ctx context.Context, in *Rgb2HexReq, opts ...grpc.
 	return out, nil
 }
 
+func (c *toolsClient) Story(ctx context.Context, in *GetStoryReq, opts ...grpc.CallOption) (*GetStoryResp, error) {
+	out := new(GetStoryResp)
+	err := c.cc.Invoke(ctx, "/tools.Tools/Story", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ToolsServer is the server API for Tools service.
 type ToolsServer interface {
 	Morse(context.Context, *MorseReq) (*MorseResp, error)
 	QrCode(context.Context, *QrCodeReq) (*QrCodeResp, error)
 	Rgb2Hex(context.Context, *Rgb2HexReq) (*Rgb2HexResp, error)
+	Story(context.Context, *GetStoryReq) (*GetStoryResp, error)
 }
 
 // UnimplementedToolsServer can be embedded to have forward compatible implementations.
@@ -547,6 +697,9 @@ func (*UnimplementedToolsServer) QrCode(context.Context, *QrCodeReq) (*QrCodeRes
 }
 func (*UnimplementedToolsServer) Rgb2Hex(context.Context, *Rgb2HexReq) (*Rgb2HexResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Rgb2Hex not implemented")
+}
+func (*UnimplementedToolsServer) Story(context.Context, *GetStoryReq) (*GetStoryResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Story not implemented")
 }
 
 func RegisterToolsServer(s *grpc.Server, srv ToolsServer) {
@@ -607,6 +760,24 @@ func _Tools_Rgb2Hex_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Tools_Story_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStoryReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ToolsServer).Story(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tools.Tools/Story",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ToolsServer).Story(ctx, req.(*GetStoryReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Tools_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "tools.Tools",
 	HandlerType: (*ToolsServer)(nil),
@@ -622,6 +793,10 @@ var _Tools_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Rgb2Hex",
 			Handler:    _Tools_Rgb2Hex_Handler,
+		},
+		{
+			MethodName: "Story",
+			Handler:    _Tools_Story_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
