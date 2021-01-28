@@ -47,6 +47,39 @@ type JwtToken struct {
 	RefreshAfter int64  `json:"refreshAfter,omitempty"`
 }
 
+type Tag struct {
+	TagId   int64  `json:"tag_id"`
+	TagName string `json:"tag_name"`
+}
+
+type Tool struct {
+	ToolId      int64  `json:"tool_id"`
+	Name        string `json:"name"`
+	Api         string `json:"api"`
+	ApiDescribe string `json:"api_describe"`
+	Picture     string `json:"picture"`
+	Tags        []*Tag `json:"tags"`
+}
+
+type ToolsListReq struct {
+	Page     int64 `json:"page"`
+	PageSize int64 `json:"page_size"`
+}
+
+type ToolsListResp struct {
+	Tools []*Tool `json:"tools"`
+}
+
+type ToolsListByTagNameReq struct {
+	Page     int64  `json:"page"`
+	PageSize int64  `json:"page_size"`
+	TagName  string `json:"tag_name"`
+}
+
+type ToolsListByTagNameResp struct {
+	Tools []*Tool `json:"tools"`
+}
+
 type MorseReq struct {
 	Str string `json:"str"`
 }

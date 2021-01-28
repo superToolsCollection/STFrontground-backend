@@ -48,6 +48,16 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Route{
 				{
 					Method:  http.MethodGet,
+					Path:    "/api/v1/tools",
+					Handler: api.ToolsListHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/api/v1/toolsByTagName",
+					Handler: api.ToolsListByTagNameHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
 					Path:    "/api/v1/morse",
 					Handler: api.MorseHandler(serverCtx),
 				},
